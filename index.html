@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trendy Touch Makeup Studio | High-End Beauty & Academy by Babita Poudel</title>
+    <!-- Meta Descriptions for SEO -->
+    <meta name="description"
+        content="Welcome to Trendy Touch Makeup Studio by Babita Poudel. Nepal's premium makeup salon & academy offering luxury studio, professional bridal, party makeup, home services, and professional makeup courses. Book your glam session now.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo-link">
+                <img src="logo.png" alt="Trendy Touch Makeup Studio" class="logo-img">
+            </a>
+            <nav class="nav">
+                <a href="#hero" class="nav-link active">Home</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#packages" class="nav-link">Packages</a>
+                <a href="#academy" class="nav-link">Academy</a>
+                <a href="#products" class="nav-link">Products</a>
+                <a href="#testimonials" class="nav-link">Reviews</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="btn btn-primary" onclick="openBookingWizard()">Book Now</button>
+                <button class="btn btn-outline" onclick="openAdminLogin()">Admin Portal</button>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close Navigation">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="mobile-nav-links">
+            <a href="#hero" class="mobile-nav-link" onclick="toggleMobileMenu()">Home</a>
+            <a href="#services" class="mobile-nav-link" onclick="toggleMobileMenu()">Services</a>
+            <a href="#packages" class="mobile-nav-link" onclick="toggleMobileMenu()">Packages</a>
+            <a href="#academy" class="mobile-nav-link" onclick="toggleMobileMenu()">Academy</a>
+            <a href="#products" class="mobile-nav-link" onclick="toggleMobileMenu()">Products</a>
+            <a href="#testimonials" class="mobile-nav-link" onclick="toggleMobileMenu()">Reviews</a>
+            <a href="#gallery" class="mobile-nav-link" onclick="toggleMobileMenu()">Gallery</a>
+            <a href="#contact" class="mobile-nav-link" onclick="toggleMobileMenu()">Contact</a>
+            <hr class="mobile-nav-divider">
+            <button class="btn btn-primary w-100 mb-3" onclick="toggleMobileMenu(); openBookingWizard()">Book
+                Now</button>
+            <button class="btn btn-outline w-100" onclick="toggleMobileMenu(); openAdminLogin()">Admin Portal</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-bg-glow"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="hero-tagline">Signature Luxury Makeup & Styling</span>
+                <h1 class="hero-title">Unveil Your Divine, Radiant Elegance</h1>
+                <p class="hero-description">Experience the master touch of <strong>Babita Poudel</strong>. Indulge in
+                    premium makeup services tailored for brides, party glams, and high-fashion events, or elevate your
+                    skills at our premier learning academy.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary btn-lg" onclick="openBookingWizard()">Book Your Session</button>
+                    <a href="#packages" class="btn btn-outline btn-lg">View Price List</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">Happy Brides</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">250+</span>
+                        <span class="stat-label">Academy Graduates</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">4.9★</span>
+                        <span class="stat-label">Client Rating</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-frame">
+                    <div class="floating-badge badge-top">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        <span>Top Bridal Studio</span>
+                    </div>
+                    <!-- Aesthetic Mock Image Container using SVG and luxury styling -->
+                    <div class="luxury-image-mockup">
+                        <div class="mockup-circle"></div>
+                        <div class="mockup-inner">
+                            <span class="mockup-title">Babita Poudel</span>
+                            <span class="mockup-subtitle">Founder & Lead Artist</span>
+                        </div>
+                    </div>
+                    <div class="floating-badge badge-bottom">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        <span>Home Service Available</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="philosophy-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle">Our Philosophy</span>
+                <h2 class="section-title">The Artistry of Babita Poudel</h2>
+                <div class="accent-line"></div>
+            </div>
+            <div class="philosophy-grid">
+                <div class="philosophy-card card-glow">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h3>Absolute Hygiene Standards</h3>
+                    <p>Every brush, sponge, and tool undergoes a rigorous multi-stage sanitization process. Your skin
+                        health and safety are our non-negotiable priorities.</p>
+                </div>
+                <div class="philosophy-card card-glow">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3>Personalized Enhancement</h3>
+                    <p>We do not paint over your face; we emphasize your best features. Custom foundations,
+                        color-correction, and styles matched to your unique bone structure and skin tone.</p>
+                </div>
+                <div class="philosophy-card card-glow">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2z"></polygon>
+                            <polyline points="2 17 12 22 22 17"></polyline>
+                            <polyline points="2 12 12 17 22 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3>High-Definition Perfection</h3>
+                    <p>Designed for professional studio lighting, 4K digital photography, and cinematic videos, ensuring
+                        your makeup looks seamless up close and behind the lens.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Showcase Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle">What We Offer</span>
+                <h2 class="section-title">Exclusive Studio & Home Services</h2>
+                <div class="accent-line"></div>
+                <p class="section-description">We bring luxury pampering directly to you. Select between an indulgent
+                    session in our state-of-the-art studio or the extreme comfort of our home service setup.</p>
+            </div>
+
+            <div class="services-toggle-container">
+                <div class="service-option-card">
+                    <div class="option-header">
+                        <div class="option-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                        </div>
+                        <h3>Studio Service</h3>
+                    </div>
+                    <p>Visit our elegant space, designed to put you at ease with relaxing lighting, complimentary
+                        drinks, and professional-grade makeup chairs.</p>
+                    <ul class="option-benefits">
+                        <li>Access to our full physical product cabinet</li>
+                        <li>Optimal ring-light & natural light calibration</li>
+                        <li>Perfect environment for outfit and jewelry draping</li>
+                    </ul>
+                    <button class="btn btn-outline w-100" onclick="openBookingWizard('studio')">Book Studio
+                        Session</button>
+                </div>
+
+                <div class="service-option-card luxury-highlight">
+                    <div class="premium-ribbon">Highly Requested</div>
+                    <div class="option-header">
+                        <div class="option-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                        </div>
+                        <h3>Luxury Home Service</h3>
+                    </div>
+                    <p>Forget traffic stress. Babita and her elite team bring professional lighted mirrors, sterilized
+                        kits, and luxury cosmetics straight to your home or wedding venue.</p>
+                    <ul class="option-benefits">
+                        <li>Absolute convenience and privacy</li>
+                        <li>Personalized time schedule adjusted for photography</li>
+                        <li>Available across Kathmandu, Lalitpur, and Bhaktapur</li>
+                    </ul>
+                    <button class="btn btn-primary w-100" onclick="openBookingWizard('home')">Request Home
+                        Service</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages & Price List Section -->
+    <section id="packages" class="packages-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle">Pricing Packages</span>
+                <h2 class="section-title">Transparent Luxury Price List</h2>
+                <div class="accent-line"></div>
+                <p class="section-description">Choose a package tailored to your exact beauty needs. All rates are
+                    inclusive of primary styling, lash sets, and skincare preps.</p>
+            </div>
+
+            <!-- Category Tab Headers -->
+            <div class="package-tabs">
+                <button class="tab-btn active" onclick="switchPackageTab('bridal')">Bridal Packages</button>
+                <button class="tab-btn" onclick="switchPackageTab('party')">Party & Special Event</button>
+                <button class="tab-btn" onclick="switchPackageTab('casual')">Casual & Editorial</button>
+            </div>
+
+            <!-- Tab Content: Bridal -->
+            <div id="tab-bridal" class="package-tab-content active">
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h3>Royal Bridal HD Makeup</h3>
+                            <div class="price">Rs. 25,000</div>
+                        </div>
+                        <ul class="package-features">
+                            <li>Premium High-Definition Makeup</li>
+                            <li>Ultra-lasting, photogenic airbrush-like finish</li>
+                            <li>Luxury Hair Styling & Hair Extension placement</li>
+                            <li>Dupatta/Saree draping and jewelry setting</li>
+                            <li>Skincare prepping and 3D eyelashes</li>
+                        </ul>
+                        <button class="btn btn-primary w-100"
+                            onclick="selectPackageFromList('Bridal', 'Royal Bridal HD Makeup', 25000)">Book
+                            Package</button>
+                    </div>
+
+                    <div class="package-card featured">
+                        <div class="featured-badge">Elite Choice</div>
+                        <div class="package-header">
+                            <h3>Premium Bridal Airbrush</h3>
+                            <div class="price">Rs. 35,000</div>
+                        </div>
+                        <ul class="package-features">
+                            <li>Original Airbrush Makeup application</li>
+                            <li>Completely sweat-proof & waterproof (24hr lock)</li>
+                            <li>High-End Hair Sculpting with premium flowers/accessories</li>
+                            <li>Outfit styling, heavy jewelry setting & draping</li>
+                            <li>Luxury bio-cellulose facial hydration treatment</li>
+                            <li>Custom premium mink eyelash set</li>
+                        </ul>
+                        <button class="btn btn-primary w-100"
+                            onclick="selectPackageFromList('Bridal', 'Premium Bridal Airbrush', 35000)">Book Elite
+                            Package</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Party -->
+            <div id="tab-party" class="package-tab-content">
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h3>Glamorous Party Makeup</h3>
+                            <div class="price">Rs. 8,000</div>
+                        </div>
+                        <ul class="package-features">
+                            <li>High Definition party glam base</li>
+                            <li>Custom eye makeup (shimmer/glitter/matte)</li>
+                            <li>Standard hair styling (curls/straightening/half-up)</li>
+                            <li>Professional false eyelashes</li>
+                            <li>Long-lasting setting spray locking</li>
+                        </ul>
+                        <button class="btn btn-primary w-100"
+                            onclick="selectPackageFromList('Party', 'Glamorous Party Makeup', 8000)">Book
+                            Package</button>
+                    </div>
+
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h3>Engagement / Reception</h3>
+                            <div class="price">Rs. 15,000</div>
+                        </div>
+                        <ul class="package-features">
+                            <li>Luxury high-coverage semi-bridal makeup</li>
+                            <li>Premium hair styling with hair padding/styling spray</li>
+                            <li>Saree or lehenga draping & jewelry security pins</li>
+                            <li>Premium lashes & glowing highlight finish</li>
+                            <li>15-minute hydrating facial prep</li>
+                        </ul>
+                        <button class="btn btn-primary w-100"
+                            onclick="selectPackageFromList('Party', 'Engagement / Reception', 15000)">Book
+                            Package</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Casual -->
+            <div id="tab-casual" class="package-tab-content">
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h3>Casual Glow Makeup</h3>
+                            <div class="price">Rs. 5,000</div>
+                        </div>
+                        <ul class="package-features">
+                            <li>Lightweight, natural skin-like foundation base</li>
+                            <li>Soft neutral eye definition</li>
+                            <li>Basic hair styling (simple blow-dry or waves)</li>
+                            <li>Gentle hydration and lip stain</li>
+                            <li>Perfect for daytime birthdays or casual dinners</li>
+                        </ul>
+                        <button class="btn btn-primary w-100"
+                            onclick="selectPackageFromList('Casual', 'Casual Glow Makeup', 5000)">Book Package</button>
+                    </div>
+
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h3>Editorial / Photoshoot</h3>
+                            <div class="price">Rs. 12,000</div>
+                        </div>
+                        <ul class="package-features">
+                            <li>Camera-ready matte/dewy high contrast makeup</li>
+                            <li>Creative styling / Bold lips / graphic eyeliners if requested</li>
+                            <li>Sleek or artistic hair styling</li>
+                            <li>Body glow shimmer highlights</li>
+                            <li>On-set touch-ups guide</li>
+                        </ul>
+                        <button class="btn btn-primary w-100"
+                            onclick="selectPackageFromList('Casual', 'Editorial / Photoshoot', 12000)">Book
+                            Package</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add-ons Box -->
+            <div class="add-ons-container card-glow mt-5">
+                <h3 class="add-ons-title">Customize with Luxury Add-ons</h3>
+                <div class="add-ons-grid">
+                    <div class="addon-item">
+                        <span class="addon-name">Gel Nail Art (Custom designs & stones)</span>
+                        <span class="addon-price">+ Rs. 2,000</span>
+                    </div>
+                    <div class="addon-item">
+                        <span class="addon-name">Hair Extensions Setup (Rental or installation)</span>
+                        <span class="addon-price">+ Rs. 3,500</span>
+                    </div>
+                    <div class="addon-item">
+                        <span class="addon-name">Hydra-Glow Sheet Mask Pre-Treatment</span>
+                        <span class="addon-price">+ Rs. 1,500</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Academy Section -->
+    <section id="academy" class="academy-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle">Learn From The Master</span>
+                <h2 class="section-title">Student Learning Academy</h2>
+                <div class="accent-line"></div>
+                <p class="section-description">Unlock your creative potential. Babita Poudel offers professional
+                    certification courses with hand-on experience, client counseling workshops, and live session
+                    practices.</p>
+            </div>
+
+            <div class="academy-grid">
+                <!-- Course 1 -->
+                <div class="course-card">
+                    <div class="course-tag">Short Term</div>
+                    <div class="course-header">
+                        <h3>Self-Makeup Mastery Course</h3>
+                        <span class="course-duration">7 Days (2 Hours/Day)</span>
+                    </div>
+                    <p class="course-description">Perfect for individuals who want to learn how to prep their own skin,
+                        choose the right foundation shade, and master quick daytime to dramatic night-out
+                        transformations.</p>
+                    <div class="course-syllabus">
+                        <h4>What You'll Learn:</h4>
+                        <ul>
+                            <li>Understanding skin type and daily skincare prep</li>
+                            <li>Finding your perfect foundation match & color correction</li>
+                            <li>Quick 10-minute office/casual makeup look</li>
+                            <li>Classic winged liner, smoky eyes, and bold lips</li>
+                            <li>Personal cosmetic kit selection audit</li>
+                        </ul>
+                    </div>
+                    <div class="course-footer">
+                        <div class="course-price">Rs. 10,000</div>
+                        <button class="btn btn-outline"
+                            onclick="openAcademyEnrollment('Self-Makeup Mastery Course')">Enroll Now</button>
+                    </div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="course-card primary-featured">
+                    <div class="course-tag-featured">Professional Certification</div>
+                    <div class="course-header">
+                        <h3>Professional Bridal Makeup Course</h3>
+                        <span class="course-duration">30 - 40 Days</span>
+                    </div>
+                    <p class="course-description">Become a certified professional makeup artist. Our intensive
+                        curriculum prepares you for a rewarding career in bridal makeup, fashion editorials, and
+                        commercial salons.</p>
+                    <div class="course-syllabus">
+                        <h4>Complete Professional Syllabus:</h4>
+                        <ul>
+                            <li><strong>Week 1:</strong> Skin Anatomy, Advanced Sanitization, Color Wheel Theory</li>
+                            <li><strong>Week 2:</strong> Contouring, Highlighting, Baking & Face Shape Corrections</li>
+                            <li><strong>Week 3:</strong> Eye Artistry (Cut-crease, Halo, Glitters, Lash Art)</li>
+                            <li><strong>Week 4:</strong> Traditional Bridal looks (Nepali, Indian, Reception, Mehendi)
+                            </li>
+                            <li><strong>Week 5:</strong> Airbrush Makeup Mechanics, Saree/Dupatta Draping</li>
+                            <li><strong>Week 6:</strong> Hair styling foundations, business setup & social media
+                                branding</li>
+                        </ul>
+                    </div>
+                    <div class="course-footer">
+                        <div class="course-price">Rs. 45,000</div>
+                        <button class="btn btn-primary"
+                            onclick="openAcademyEnrollment('Professional Bridal Makeup Course')">Enroll Today</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products & Benefits Accordion Showcase -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle">Premium Standards</span>
+                <h2 class="section-title">Brand Quality & Skin Health</h2>
+                <div class="accent-line"></div>
+                <p class="section-description">We strictly use high-end, original international brands. Explore our
+                    quality principles and how they benefit your skin health.</p>
+            </div>
+
+            <div class="products-accordion-layout">
+                <div class="accordion-left">
+                    <h3>High-End Brands Used</h3>
+                    <p class="mb-4">We believe that beautiful makeup starts with outstanding product formulations. We do
+                        not use duplicate or cheap cosmetics. Only certified original products touch your skin.</p>
+                    <div class="brand-badges-grid">
+                        <span class="brand-badge">Estée Lauder</span>
+                        <span class="brand-badge">MAC Cosmetics</span>
+                        <span class="brand-badge">NARS</span>
+                        <span class="brand-badge">Huda Beauty</span>
+                        <span class="brand-badge">Anastasia Beverly Hills</span>
+                        <span class="brand-badge">Charlotte Tilbury</span>
+                        <span class="brand-badge">Fenty Beauty</span>
+                        <span class="brand-badge">Laura Mercier</span>
+                    </div>
+                </div>
+                <div class="accordion-right">
+                    <!-- Accordion Item 1 -->
+                    <div class="accordion-item" onclick="toggleAccordion(this)">
+                        <div class="accordion-header">
+                            <h4>Hypoallergenic & Non-Comedogenic Products</h4>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-body">
+                            <p>We select foundations, primers, and powders that do not clog your pores (non-comedogenic)
+                                and are safe for extremely sensitive or acne-prone skin, preventing breakout flare-ups
+                                after your events.</p>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Item 2 -->
+                    <div class="accordion-item active" onclick="toggleAccordion(this)">
+                        <div class="accordion-header">
+                            <h4>Ultra Long-lasting & Sweat-proof Lock</h4>
+                            <span class="accordion-icon">-</span>
+                        </div>
+                        <div class="accordion-body">
+                            <p>With Nepal's warm seasons, makeup longevity is vital. We utilize high-performance
+                                primers, baking techniques, and setting sprays that resist sweat, humidity, and tears
+                                for up to 18+ hours without creasing.</p>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Item 3 -->
+                    <div class="accordion-item" onclick="toggleAccordion(this)">
+                        <div class="accordion-header">
+                            <h4>Skincare-Infused Foundations</h4>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-body">
+                            <p>Our luxury bases contain nourishing active ingredients like Hyaluronic Acid, Vitamin E,
+                                and Glycerin. They actively lock in moisture, giving you a plump, dewy look rather than
+                                a dry, cakey texture.</p>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Item 4 -->
+                    <div class="accordion-item" onclick="toggleAccordion(this)">
+                        <div class="accordion-header">
+                            <h4>HD Camera & 4K Flash Proof</h4>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-body">
+                            <p>Cheaper cosmetics create a white flashback reflection in photos. We use fine silica-free
+                                translucent powders and micro-pigment foundations that absorb light properly, making you
+                                look stunning in high-definition photographs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials & Reviews Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle">Testimonials</span>
+                <h2 class="section-title">What Our Lovely Clients Say</h2>
+                <div class="accent-line"></div>
+            </div>
+
+            <!-- Testimonial Slider Wrapper -->
+            <div class="testimonials-wrapper">
+                <div class="testimonials-slider" id="testimonialsSlider">
+                    <!-- Dynamic client reviews will load here -->
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn prev" onclick="prevSlide()" aria-label="Previous Review">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <button class="slider-btn next" onclick="nextSlide()" aria-label="Next Review">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Feedback Submission Form -->
+            <div class="feedback-form-container card-glow mt-5">
+                <h3 class="form-title text-center">Share Your Glam Experience</h3>
+                <p class="text-center mb-4">Your honest feedback helps us maintain our premium standards and inspires
+                    future students.</p>
+                <form id="feedbackForm" onsubmit="submitFeedback(event)">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="fbName">Full Name</label>
+                            <input type="text" id="fbName" class="form-control" placeholder="e.g. Shruti Sharma"
+                                required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="fbService">Service / Course Taken</label>
+                            <select id="fbService" class="form-control" required>
+                                <option value="" disabled selected>Select option</option>
+                                <option value="Royal Bridal HD Makeup">Royal Bridal HD Makeup</option>
+                                <option value="Premium Bridal Airbrush">Premium Bridal Airbrush</option>
+                                <option value="Glamorous Party Makeup">Glamorous Party Makeup</option>
+                                <option value="Engagement / Reception">Engagement / Reception</option>
+                                <option value="Casual Glow Makeup">Casual Glow Makeup</option>
+                                <option value="Professional Bridal Makeup Course">Professional Bridal Makeup Course
+                                </option>
+                                <option value="Self-Makeup Mastery Course">Self-Makeup Mastery Course</option>
+                                <option value="Other Service">Other Custom Makeup</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Rating</label>
+                        <div class="star-rating-input">
+                            <span class="star-input" data-value="1">&#9733;</span>
+                            <span class="star-input" data-value="2">&#9733;</span>
+                            <span class="star-input" data-value="3">&#9733;</span>
+                            <span class="star-input" data-value="4">&#9733;</span>
+                            <span class="star-input active" data-value="5">&#9733;</span>
+                            <input type="hidden" id="fbRating" value="5">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fbComment">Your Review</label>
+                        <textarea id="fbComment" class="form-control" rows="3"
+                            placeholder="Tell us what you loved about your makeup look or the course..."
+                            required></textarea>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CLIENT GALLERY / FEED SECTION
+    ============================================================ -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle">Our Work</span>
+                <h2 class="section-title">Client Transformations & Studio Moments</h2>
+                <div class="accent-line"></div>
+                <p class="section-description">Browse our latest bridal glam sessions, party looks, and academy transformation photos — posted live by our studio team.</p>
+            </div>
+
+            <!-- Gallery Filter Tabs -->
+            <div class="gallery-filter-tabs">
+                <button class="gallery-filter-btn active" onclick="filterGallery('all')">All Posts</button>
+                <button class="gallery-filter-btn" onclick="filterGallery('photo')">Photos</button>
+                <button class="gallery-filter-btn" onclick="filterGallery('video')">Videos</button>
+            </div>
+
+            <!-- Gallery Feed Grid -->
+            <div class="gallery-feed-grid" id="galleryFeedGrid">
+                <!-- Populated dynamically by app.js -->
+            </div>
+
+            <!-- Empty State -->
+            <div class="gallery-empty-state" id="galleryEmptyState" style="display: none;">
+                <div class="empty-icon">📸</div>
+                <h3>No posts yet</h3>
+                <p>Our team will be posting client transformations here soon. Check back after your session!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Actionable Widget Section -->
+    <footer id="contact" class="footer-section">
+        <div class="container footer-container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <a href="#" class="logo-link mb-3 d-inline-block">
+                        <img src="logo.png" alt="Trendy Touch Logo" class="logo-img footer-logo">
+                    </a>
+                    <p class="mb-4">Luxury makeup styling & certified cosmetics academy by Babita Poudel. Creating
+                        beautiful moments and professional careers since 2018.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="YouTube">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                                </path>
+                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Contact Information</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                            <div>
+                                <span class="d-block text-muted">Phone Number</span>
+                                <a href="tel:+9779801234567" class="contact-link">+977-9801234567</a>
+                                <button class="btn-copy" onclick="copyToClipboard('+9779801234567', this)">Copy</button>
+                            </div>
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <div>
+                                <span class="d-block text-muted">Email Address</span>
+                                <a href="mailto:info@trendytouchmakeup.com"
+                                    class="contact-link">info@trendytouchmakeup.com</a>
+                                <button class="btn-copy"
+                                    onclick="copyToClipboard('info@trendytouchmakeup.com', this)">Copy</button>
+                            </div>
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <div>
+                                <span class="d-block text-muted">Studio Location</span>
+                                <span class="contact-text">Siddhartha chowk, Soondar Marga, Pokhara, Nepal</span>
+                                <button class="btn-copy"
+                                    onclick="copyToClipboard('Siddhartha chowk, Soondar Marga, Pokhara, Nepal', this)">Copy</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-map">
+                    <h3>Find Us On Maps</h3>
+                    <!-- High quality directional visual card representing Google Maps shortcut -->
+                    <div class="map-shortcut-card">
+                        <div class="map-icon-circle">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon>
+                                <line x1="9" y1="3" x2="9" y2="18"></line>
+                                <line x1="15" y1="6" x2="15" y2="21"></line>
+                            </svg>
+                        </div>
+                        <p class="mb-3 text-center">Open direction routes instantly in Google Maps to Siddartha Chowk
+                            Studio.</p>
+                        <a href="https://maps.app.goo.gl/CWcjntTRvLyaaES86" target="_blank"
+                            class="btn btn-primary btn-sm w-100">Get Directions</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Trendy Touch Makeup Studio. Owned and Operated by <strong>Babita Poudel</strong>. All
+                    Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Contact Widget -->
+    <div class="floating-widget">
+        <button class="widget-trigger" onclick="toggleWidgetOptions()" aria-label="Quick Connect Options">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </button>
+        <div class="widget-options" id="widgetOptions">
+            <a href="https://wa.me/9779801234567" target="_blank" class="widget-btn whatsapp" title="Chat on WhatsApp">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                    </path>
+                </svg>
+                <span>WhatsApp</span>
+            </a>
+            <a href="tel:+9779801234567" class="widget-btn call" title="Call Us Direct">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                </svg>
+                <span>Call Now</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Booking Modal (The Wizard App) -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="booking-wizard-card">
+            <button class="modal-close" onclick="closeBookingWizard()" aria-label="Close Booking Wizard">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <div class="wizard-header">
+                <h2>Pre-Book Session</h2>
+                <div class="wizard-progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="wizard-steps-indicator">
+                    <span class="step-dot active" data-step="1">1</span>
+                    <span class="step-dot" data-step="2">2</span>
+                    <span class="step-dot" data-step="3">3</span>
+                    <span class="step-dot" data-step="4">4</span>
+                    <span class="step-dot" data-step="5">5</span>
+                </div>
+            </div>
+
+            <div class="wizard-body">
+                <!-- STEP 1: Service Location -->
+                <div class="wizard-step-panel active" data-step="1">
+                    <h3 class="step-title">Choose Service Venue</h3>
+                    <p class="step-desc">Select whether you would like to visit our studio or have Babita's team visit
+                        your venue.</p>
+
+                    <div class="venue-cards-grid">
+                        <label class="venue-select-card">
+                            <input type="radio" name="bookingVenue" value="Studio" checked
+                                onchange="handleVenueChange(this)">
+                            <div class="card-inner">
+                                <span class="venue-icon">🏢</span>
+                                <h4>Studio Session</h4>
+                                <p>New Baneshwor, Kathmandu</p>
+                                <span class="venue-fee">No Travel Fee</span>
+                            </div>
+                        </label>
+                        <label class="venue-select-card">
+                            <input type="radio" name="bookingVenue" value="Home" onchange="handleVenueChange(this)">
+                            <div class="card-inner">
+                                <span class="venue-icon">🚗</span>
+                                <h4>Home Service / Venue</h4>
+                                <p>Kathmandu Valley Location</p>
+                                <span class="venue-fee">+ Rs. 2,000 Travel Fee</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="step-actions">
+                        <div></div>
+                        <button class="btn btn-primary" onclick="nextWizardStep()">Next: Service Category</button>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Service & Package -->
+                <div class="wizard-step-panel" data-step="2">
+                    <h3 class="step-title">Select Package & Add-ons</h3>
+                    <p class="step-desc">Select the primary beauty service category and specific package.</p>
+
+                    <div class="form-group mb-3">
+                        <label for="wizCategory">Service Category</label>
+                        <select id="wizCategory" class="form-control" onchange="loadCategoryPackages(this.value)">
+                            <option value="Bridal">Bridal Packages</option>
+                            <option value="Party">Party & Special Event</option>
+                            <option value="Casual">Casual & Editorial</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label>Select Specific Package</label>
+                        <div id="wizPackagesList" class="radio-packages-list">
+                            <!-- Dynamic package radio inputs go here -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Add-ons (Optional)</label>
+                        <div class="checkbox-addons-list">
+                            <label class="addon-checkbox">
+                                <input type="checkbox" name="wizAddons" value="Nail Art" data-price="2000"
+                                    onchange="updateSummaryPrice()">
+                                <span>Gel Nail Art (+ Rs. 2,000)</span>
+                            </label>
+                            <label class="addon-checkbox">
+                                <input type="checkbox" name="wizAddons" value="Hair Extensions" data-price="3500"
+                                    onchange="updateSummaryPrice()">
+                                <span>Hair Extensions (+ Rs. 3,500)</span>
+                            </label>
+                            <label class="addon-checkbox">
+                                <input type="checkbox" name="wizAddons" value="Hydra Glow" data-price="1500"
+                                    onchange="updateSummaryPrice()">
+                                <span>Hydra-Glow Face Treatment (+ Rs. 1,500)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="step-actions mt-4">
+                        <button class="btn btn-outline" onclick="prevWizardStep()">Back</button>
+                        <button class="btn btn-primary" onclick="nextWizardStep()">Next: Date & Time</button>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Date & Time -->
+                <div class="wizard-step-panel" data-step="3">
+                    <h3 class="step-title">Select Date & Preferred Time</h3>
+                    <p class="step-desc">Pick an available calendar date and preferred starting hour slot.</p>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="wizDate">Select Date</label>
+                            <input type="date" id="wizDate" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="wizTime">Preferred Time Slot</label>
+                            <select id="wizTime" class="form-control" required>
+                                <option value="06:00 AM">06:00 AM (Early Bridal)</option>
+                                <option value="08:00 AM">08:00 AM</option>
+                                <option value="10:00 AM" selected>10:00 AM</option>
+                                <option value="12:00 PM">12:00 PM</option>
+                                <option value="02:00 PM">02:00 PM</option>
+                                <option value="04:00 PM">04:00 PM</option>
+                                <option value="06:00 PM">06:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="step-actions mt-4">
+                        <button class="btn btn-outline" onclick="prevWizardStep()">Back</button>
+                        <button class="btn btn-primary" onclick="nextWizardStep()">Next: Your Details</button>
+                    </div>
+                </div>
+
+                <!-- STEP 4: Client Info -->
+                <div class="wizard-step-panel" data-step="4">
+                    <h3 class="step-title">Enter Contact Details</h3>
+                    <p class="step-desc">Please provide your contact information. If you selected Home Service, add the
+                        destination venue address.</p>
+
+                    <div class="form-group mb-3">
+                        <label for="wizName">Full Name</label>
+                        <input type="text" id="wizName" class="form-control" placeholder="e.g. Aditi Rijal" required>
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="form-group col-md-6">
+                            <label for="wizPhone">Phone Number</label>
+                            <input type="tel" id="wizPhone" class="form-control" placeholder="e.g. 9801XXXXXX" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="wizEmail">Email Address</label>
+                            <input type="email" id="wizEmail" class="form-control" placeholder="e.g. aditi@gmail.com"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3" id="wizAddressContainer" style="display: none;">
+                        <label for="wizAddress">Venue / Home Service Address</label>
+                        <textarea id="wizAddress" class="form-control" rows="2"
+                            placeholder="Detail the venue name, road, and area (e.g. Hotel Yak & Yeti, Darbar Marg, Kathmandu)"></textarea>
+                    </div>
+
+                    <div class="step-actions mt-4">
+                        <button class="btn btn-outline" onclick="prevWizardStep()">Back</button>
+                        <button class="btn btn-primary" onclick="nextWizardStep()">Next: Review</button>
+                    </div>
+                </div>
+
+                <!-- STEP 5: Summary & Confirm -->
+                <div class="wizard-step-panel" data-step="5">
+                    <h3 class="step-title">Review & Submit Booking</h3>
+                    <p class="step-desc">Verify your selected package, schedule, and prices before submitting.</p>
+
+                    <div class="booking-summary-box card-glow">
+                        <div class="summary-line">
+                            <strong>Service Type:</strong>
+                            <span id="sumVenue">Studio Session</span>
+                        </div>
+                        <div class="summary-line">
+                            <strong>Selected Package:</strong>
+                            <span id="sumPackage">Royal Bridal HD Makeup</span>
+                        </div>
+                        <div class="summary-line">
+                            <strong>Add-ons selected:</strong>
+                            <span id="sumAddons">None</span>
+                        </div>
+                        <div class="summary-line">
+                            <strong>Date & Time:</strong>
+                            <span id="sumDateTime">2026-05-25 at 10:00 AM</span>
+                        </div>
+                        <div class="summary-line">
+                            <strong>Client:</strong>
+                            <span id="sumClient">Aditi Rijal (980123456)</span>
+                        </div>
+                        <div class="summary-line" id="sumAddressLine" style="display: none;">
+                            <strong>Venue:</strong>
+                            <span id="sumAddress">Kathmandu</span>
+                        </div>
+                        <hr class="summary-divider">
+                        <div class="price-breakdown">
+                            <div class="summary-line">
+                                <span>Base Price:</span>
+                                <span id="sumBasePrice">Rs. 25,000</span>
+                            </div>
+                            <div class="summary-line" id="sumTravelFeeLine">
+                                <span>Travel Fee:</span>
+                                <span id="sumTravelFee">Rs. 0</span>
+                            </div>
+                            <div class="summary-line highlight-price">
+                                <strong>Total Est. Price:</strong>
+                                <strong id="sumTotalPrice">Rs. 25,000</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-actions mt-4">
+                        <button class="btn btn-outline" onclick="prevWizardStep()">Back</button>
+                        <button class="btn btn-primary" onclick="confirmPreBooking()">Confirm Booking</button>
+                    </div>
+                </div>
+
+                <!-- SUCCESS VIEW -->
+                <div class="wizard-step-panel" id="wizardSuccessPanel">
+                    <div class="success-alert text-center">
+                        <div class="success-icon-badge">✓</div>
+                        <h3 class="step-title mt-3">Booking Pre-Confirmed!</h3>
+                        <p>Thank you for choosing Trendy Touch Makeup Studio. Babita Poudel or a booking manager will
+                            contact you within 2-4 hours to lock your slot.</p>
+
+                        <div class="success-ticket card-glow text-left mt-4 mb-4">
+                            <div class="ticket-header">
+                                <span>Booking Receipt</span>
+                                <span class="ticket-ref" id="ticketRef">TT-49212</span>
+                            </div>
+                            <div class="ticket-body">
+                                <p><strong>Client Name:</strong> <span id="ticketName">Aditi Rijal</span></p>
+                                <p><strong>Package:</strong> <span id="ticketPackage">Royal Bridal HD Makeup</span></p>
+                                <p><strong>Venue:</strong> <span id="ticketVenue">Studio Session</span></p>
+                                <p><strong>Schedule:</strong> <span id="ticketDateTime">May 25, 2026 at 10:00 AM</span>
+                                </p>
+                                <p class="ticket-price"><strong>Total Est. Price:</strong> <span id="ticketTotal">Rs.
+                                        25,000</span></p>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline w-100 mb-2" onclick="printReceipt()">Print / Save
+                            Receipt</button>
+                        <button class="btn btn-primary w-100" onclick="closeBookingWizard()">Back to Website</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Academy Enrollment Modal -->
+    <div class="modal-overlay" id="enrollmentModal">
+        <div class="booking-wizard-card">
+            <button class="modal-close" onclick="closeAcademyEnrollment()" aria-label="Close Modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="wizard-header">
+                <h2>Academy Enrollment Inquiry</h2>
+                <p>Register your seat for the professional training syllabus under Babita Poudel.</p>
+            </div>
+            <div class="wizard-body mt-3">
+                <form id="enrollmentForm" onsubmit="submitEnrollment(event)">
+                    <div class="form-group mb-3">
+                        <label for="enrollCourse">Selected Course</label>
+                        <input type="text" id="enrollCourse" class="form-control" readonly>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="enrollName">Full Name</label>
+                        <input type="text" id="enrollName" class="form-control" placeholder="e.g. Karuna Bhandari"
+                            required>
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="form-group col-md-6">
+                            <label for="enrollPhone">Phone Number</label>
+                            <input type="tel" id="enrollPhone" class="form-control" placeholder="e.g. 9841XXXXXX"
+                                required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="enrollEmail">Email Address</label>
+                            <input type="email" id="enrollEmail" class="form-control"
+                                placeholder="e.g. karuna@gmail.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="enrollDate">Preferred Start Date</label>
+                        <input type="date" id="enrollDate" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="enrollNote">Any prior makeup experience or questions?</label>
+                        <textarea id="enrollNote" class="form-control" rows="2"
+                            placeholder="e.g. Complete beginner, or self-taught look adjustments..."></textarea>
+                    </div>
+                    
+                    <div class="form-row mb-3" style="border-top: 1px dashed var(--color-border); padding-top: 15px; margin-top: 15px;">
+                        <div class="form-group col-md-6">
+                            <label for="enrollStudentId">Desired Student ID</label>
+                            <input type="text" id="enrollStudentId" class="form-control" placeholder="e.g. karuna123" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="enrollPassword">Desired Password</label>
+                            <input type="password" id="enrollPassword" class="form-control" placeholder="••••••••" required>
+                        </div>
+                    </div>
+                    
+                    <p style="font-size: 0.75rem; color: var(--color-text-muted); line-height: 1.4; margin-bottom: 15px;">
+                        ℹ️ <strong>Verification Policy:</strong> Your account will be registered as <strong>Pre-Booked</strong>. Access to the student learning portal is granted only after physical verification and fee structure confirmation at our studio during weekdays (Sunday to Friday, 10:00 AM - 3:00 PM).
+                    </p>
+                    
+                    <button type="submit" class="btn btn-primary w-100">Submit Academy Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Portal Login Modal -->
+    <div class="modal-overlay" id="adminLoginModal">
+        <div class="booking-wizard-card small-card">
+            <button class="modal-close" onclick="closeAdminLogin()" aria-label="Close Admin Modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="wizard-header text-center">
+                <h2>Portal Access</h2>
+                <p>Welcome to Trendy Touch Academy & Studio Portal</p>
+            </div>
+            <div class="wizard-body mt-3">
+                <div class="login-tabs" style="display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid var(--color-border); padding-bottom: 10px;">
+                    <button type="button" class="btn btn-sm btn-primary" id="loginTabStaffBtn" onclick="setLoginRole('staff')" style="flex: 1;">Staff Portal</button>
+                    <button type="button" class="btn btn-sm btn-outline" id="loginTabStudentBtn" onclick="setLoginRole('student')" style="flex: 1;">Student Portal</button>
+                </div>
+                
+                <form onsubmit="validateAdminPassword(event)">
+                    <input type="hidden" id="loginRole" value="staff">
+                    
+                    <!-- Staff master passcode -->
+                    <div id="loginGroupStaff" class="form-group mb-4">
+                        <label for="adminPass">Staff Master Password</label>
+                        <input type="password" id="adminPass" class="form-control text-center" placeholder="••••••••">
+                    </div>
+                    
+                    <!-- Student personalized credentials -->
+                    <div id="loginGroupStudent" class="form-group mb-4" style="display: none;">
+                        <div class="form-group mb-3">
+                            <label for="studentLoginId">Student ID</label>
+                            <input type="text" id="studentLoginId" class="form-control text-center" placeholder="e.g. sneha123">
+                        </div>
+                        <div class="form-group">
+                            <label for="studentLoginPass">Student Password</label>
+                            <input type="password" id="studentLoginPass" class="form-control text-center" placeholder="••••••••">
+                        </div>
+                    </div>
+                    
+                    <span id="loginError" class="text-danger mt-2 mb-3 d-block text-center" style="display:none;"></span>
+                    
+                    <button type="submit" class="btn btn-primary w-100">Access Portal</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Portal Overlay View (Single Page Application Style) -->
+    <div class="dashboard-portal-overlay" id="dashboardPortal">
+        <!-- Dashboard Top Header Bar -->
+        <header class="dashboard-header">
+            <div class="container d-flex align-items-center justify-content-between">
+                <div class="dashboard-brand dashboard-brand-wrapper">
+                    <img src="logo.png" alt="Trendy Touch" class="logo-img dashboard-logo">
+                    <div>
+                        <span class="logo-accent">Trendy Touch</span>
+                        <span class="badge badge-accent ml-2" id="portalRoleBadge">Staff Portal</span>
+                    </div>
+                </div>
+                <div class="dashboard-actions">
+                    <button class="btn btn-sm btn-outline mr-2" id="btnRequestNotification"
+                        onclick="requestNotificationPermission()">
+                        🔔 Enable Desktop Alerts
+                    </button>
+                    <button class="btn btn-sm btn-primary" onclick="closeDashboard()">
+                        Exit Dashboard
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard View Container -->
+        <div class="dashboard-main container">
+            <!-- Metrics Scorecard Row -->
+            <div class="dashboard-metrics-grid">
+                <div class="metric-card card-glow" id="metricCardBookings">
+                    <div class="metric-icon">📁</div>
+                    <div class="metric-info">
+                        <h4 id="metricTotalBookings">0</h4>
+                        <p>Total Bookings Logged</p>
+                    </div>
+                </div>
+                <div class="metric-card card-glow">
+                    <div class="metric-icon">🎓</div>
+                    <div class="metric-info">
+                        <h4 id="metricActiveStudents">0</h4>
+                        <p>Academy Inquiries</p>
+                    </div>
+                </div>
+                <div class="metric-card card-glow" id="metricCardFeedbacks">
+                    <div class="metric-icon">⭐</div>
+                    <div class="metric-info">
+                        <h4 id="metricAverageRating">5.0 / 5</h4>
+                        <p>Avg. Customer Feedback</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Headers for Logs -->
+            <div class="dashboard-tabs">
+                <button class="dash-tab-btn active" id="tabBtnBookings" onclick="switchDashboardTab('bookings')">Bookings Register</button>
+                <button class="dash-tab-btn" onclick="switchDashboardTab('students')">Student Enrollments</button>
+                <button class="dash-tab-btn" id="tabBtnFeedbacks" onclick="switchDashboardTab('feedbacks')">Client Feedback Log</button>
+                <button class="dash-tab-btn" id="tabBtnGallery" onclick="switchDashboardTab('gallery')">📷 Media Gallery</button>
+            </div>
+
+            <!-- Bookings List Panel -->
+            <div id="dash-bookings" class="dashboard-tab-panel active">
+                <div class="table-controls mb-3">
+                    <input type="text" id="bookingSearch" class="form-control search-input"
+                        placeholder="Search by name, phone or service..." oninput="filterBookingsTable()">
+                    <select id="bookingFilterStatus" class="form-control status-select"
+                        onchange="filterBookingsTable()">
+                        <option value="All">All Statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="Rescheduled">Rescheduled</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="table-responsive">
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Ref ID</th>
+                                <th>Client Name</th>
+                                <th>Venue</th>
+                                <th>Service / Package</th>
+                                <th>Schedule Date & Time</th>
+                                <th>Total Price</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingsTableBody">
+                            <!-- Dynamic bookings logs row -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Student Enrollments Panel -->
+            <div id="dash-students" class="dashboard-tab-panel">
+                <div class="table-responsive">
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Contact details</th>
+                                <th>Selected Course</th>
+                                <th>Preferred Start Date</th>
+                                <th>Inquiry Note</th>
+                                <th>Enrolled Date</th>
+                                <th>Student ID</th>
+                                <th>Status</th>
+                                <th>Portal Access Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTableBody">
+                            <!-- Dynamic student logs row -->
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Academy Learning Center only for logged in students -->
+                <div id="studentAcademyCenter" class="student-academy-center" style="display: none;"></div>
+            </div>
+
+            <!-- Feedback Log Panel -->
+            <div id="dash-feedbacks" class="dashboard-tab-panel">
+                <div class="table-responsive">
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Client Name</th>
+                                <th>Service / Course</th>
+                                <th>Rating Stars</th>
+                                <th>Feedback / Comment</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="feedbacksTableBody">
+                            <!-- Dynamic feedbacks logs row -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Media Gallery Admin Panel -->
+            <div id="dash-gallery" class="dashboard-tab-panel">
+                <!-- Upload New Post Form -->
+                <div class="gallery-upload-card card-glow">
+                    <h3 class="gallery-upload-title">📤 Post New Client Photo or Video</h3>
+                    <form id="galleryUploadForm" onsubmit="submitGalleryPost(event)">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="galleryPostedBy">Artist / Staff Name</label>
+                                <input type="text" id="galleryPostedBy" class="form-control" placeholder="e.g. Babita Poudel" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="galleryTag">Service Tag</label>
+                                <select id="galleryTag" class="form-control">
+                                    <option value="Bridal Glam">Bridal Glam</option>
+                                    <option value="Party Look">Party Look</option>
+                                    <option value="Editorial">Editorial</option>
+                                    <option value="Academy Transformation">Academy Transformation</option>
+                                    <option value="Before &amp; After">Before &amp; After</option>
+                                    <option value="Studio BTS">Studio BTS</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="galleryCaption">Caption</label>
+                            <input type="text" id="galleryCaption" class="form-control" placeholder="e.g. Stunning airbrush bridal look for Asmita's big day! ✨" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="galleryFile">Select Photo or Video</label>
+                            <div class="gallery-file-drop" id="galleryFileDrop" onclick="document.getElementById('galleryFile').click()">
+                                <div class="file-drop-inner" id="fileDropInner">
+                                    <span class="file-drop-icon">📎</span>
+                                    <p>Click to select or drag & drop here</p>
+                                    <p class="file-hint">Photos: JPG, PNG, WEBP &nbsp;|&nbsp; Videos: MP4, MOV, WEBM (max 50MB)</p>
+                                </div>
+                                <input type="file" id="galleryFile" accept="image/*,video/*" style="display:none" onchange="previewGalleryFile(this)" required>
+                            </div>
+                            <div id="galleryFilePreview" class="gallery-file-preview" style="display:none"></div>
+                        </div>
+                        <div class="d-flex" style="justify-content: flex-end; gap: 12px;">
+                            <button type="button" class="btn btn-outline" onclick="clearGalleryForm()">Clear</button>
+                            <button type="submit" class="btn btn-primary">Publish to Client Feed</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Posted Gallery Items List -->
+                <div class="gallery-admin-list" id="galleryAdminList">
+                    <!-- Dynamically rendered -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- In-App Custom Toast Notification Stack -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Audio Element for Mock Notification sound -->
+    <audio id="notificationSound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-84.wav"
+        preload="auto"></audio>
+
+    <!-- JavaScript Application Logic -->
+    <script src="app.js"></script>
+</body>
+
+</html>
