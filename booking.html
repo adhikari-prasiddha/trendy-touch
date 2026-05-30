@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Book Session | Trendy Touch Makeup Studio</title>
+    <!-- Meta for SEO -->
+    <meta name="description" content="Pre-book your makeup and glam session at Trendy Touch Makeup Studio Pokhara. Choose your location, package, and preferred slots.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="page-booking">
+
+    <!-- Simple Dedicated Header -->
+    <header class="header standalone-header">
+        <div class="container header-container">
+            <a href="/" class="logo-link">
+                <img src="/logo.png" alt="Trendy Touch Makeup Studio" class="logo-img">
+            </a>
+            <div class="header-actions">
+                <a href="/" class="btn btn-outline">← Back to Home</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content: Booking Wizard Wrapper -->
+    <main class="booking-wizard-page-container container">
+        <div class="booking-wizard-card page-card">
+            <div class="wizard-header">
+                <h2>Pre-Book Session</h2>
+                <div class="wizard-progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                </div>
+                <div class="wizard-steps-indicator">
+                    <span class="step-dot active" data-step="1">1</span>
+                    <span class="step-dot" data-step="2">2</span>
+                    <span class="step-dot" data-step="3">3</span>
+                    <span class="step-dot" data-step="4">4</span>
+                    <span class="step-dot" data-step="5">5</span>
+                </div>
+            </div>
+
+            <div class="wizard-body">
+                <!-- STEP 1: Service Location -->
+                <div class="wizard-step-panel active" data-step="1">
+                    <h3 class="step-title">Choose Service Venue</h3>
+                    <p class="step-desc">Select whether you would like to visit our studio or have Babita's team visit your venue.</p>
+
+                    <div class="venue-cards-grid">
+                        <label class="venue-select-card">
+                            <input type="radio" name="bookingVenue" value="Studio" checked id="venueStudio">
+                            <div class="card-inner">
+                                <span class="venue-icon">🏢</span>
+                                <h4>Studio Session</h4>
+                                <p>Siddhartha chowk, Soondar Marga, Pokhara</p>
+                                <span class="venue-fee">No Travel Fee</span>
+                            </div>
+                        </label>
+                        <label class="venue-select-card">
+                            <input type="radio" name="bookingVenue" value="Home" id="venueHome">
+                            <div class="card-inner">
+                                <span class="venue-icon">🚗</span>
+                                <h4>Home Service / Venue</h4>
+                                <p>Pokhara Valley Location</p>
+                                <span class="venue-fee">+ Rs. 2,000 Travel Fee</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="step-actions">
+                        <div></div>
+                        <button class="btn btn-primary" id="btnStep1Next">Next: Service Category</button>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Service & Package -->
+                <div class="wizard-step-panel" data-step="2">
+                    <h3 class="step-title">Select Package & Add-ons</h3>
+                    <p class="step-desc">Select the primary beauty service category and specific package.</p>
+
+                    <div class="form-group mb-3">
+                        <label for="wizCategory">Service Category</label>
+                        <select id="wizCategory" class="form-control">
+                            <option value="Bridal">Bridal Packages</option>
+                            <option value="Party">Party & Special Event</option>
+                            <option value="Casual">Casual & Editorial</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label>Select Specific Package</label>
+                        <div id="wizPackagesList" class="radio-packages-list">
+                            <!-- Dynamic package radio inputs go here -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Add-ons (Optional)</label>
+                        <div class="checkbox-addons-list">
+                            <label class="addon-checkbox">
+                                <input type="checkbox" name="wizAddons" value="Nail Art" data-price="2000">
+                                <span>Gel Nail Art (+ Rs. 2,000)</span>
+                            </label>
+                            <label class="addon-checkbox">
+                                <input type="checkbox" name="wizAddons" value="Hair Extensions" data-price="3500">
+                                <span>Hair Extensions (+ Rs. 3,500)</span>
+                            </label>
+                            <label class="addon-checkbox">
+                                <input type="checkbox" name="wizAddons" value="Hydra Glow" data-price="1500">
+                                <span>Hydra-Glow Face Treatment (+ Rs. 1,500)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="step-actions mt-4">
+                        <button class="btn btn-outline" id="btnStep2Back">Back</button>
+                        <button class="btn btn-primary" id="btnStep2Next">Next: Date & Time</button>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Date & Time -->
+                <div class="wizard-step-panel" data-step="3">
+                    <h3 class="step-title">Select Date & Preferred Time</h3>
+                    <p class="step-desc">Pick an available calendar date and preferred starting hour slot.</p>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="wizDate">Select Date</label>
+                            <input type="date" id="wizDate" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="wizTime">Preferred Time Slot</label>
+                            <select id="wizTime" class="form-control" required>
+                                <option value="06:00 AM">06:00 AM (Early Bridal)</option>
+                                <option value="08:00 AM">08:00 AM</option>
+                                <option value="10:00 AM" selected>10:00 AM</option>
+                                <option value="12:00 PM">12:00 PM</option>
+                                <option value="02:00 PM">02:00 PM</option>
+                                <option value="04:00 PM">04:00 PM</option>
+                                <option value="06:00 PM">06:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="step-actions mt-4">
+                        <button class="btn btn-outline" id="btnStep3Back">Back</button>
+                        <button class="btn btn-primary" id="btnStep3Next">Next: Your Details</button>
+                    </div>
+                </div>
+
+                <!-- STEP 4: Client Info -->
+                <div class="wizard-step-panel" data-step="4">
+                    <h3 class="step-title">Enter Contact Details</h3>
+                    <p class="step-desc">Please provide your contact information. If you selected Home Service, add the destination venue address.</p>
+
+                    <div class="form-group mb-3">
+                        <label for="wizName">Full Name</label>
+                        <input type="text" id="wizName" class="form-control" placeholder="e.g. Aditi Rijal" required>
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="form-group col-md-6">
+                            <label for="wizPhone">Phone Number</label>
+                            <input type="tel" id="wizPhone" class="form-control" placeholder="e.g. 9801XXXXXX" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="wizEmail">Email Address</label>
+                            <input type="email" id="wizEmail" class="form-control" placeholder="e.g. aditi@gmail.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3" id="wizAddressContainer" style="display: none;">
+                        <label for="wizAddress">Venue / Home Service Address</label>
+                        <textarea id="wizAddress" class="form-control" rows="2" placeholder="Detail the venue name, road, and area (e.g. Hotel Yak & Yeti, Pokhara)"></textarea>
+                    </div>
+
+                    <div class="step-actions mt-4">
+                        <button class="btn btn-outline" id="btnStep4Back">Back</button>
+                        <button class="btn btn-primary" id="btnStep4Next">Next: Review</button>
+                    </div>
+                </div>
+
+                <!-- STEP 5: Summary & Confirm -->
+                <div class="wizard-step-panel" data-step="5">
+                    <h3 class="step-title">Review & Submit Booking</h3>
+                    <p class="step-desc">Verify your selected package, schedule, and prices before submitting.</p>
+
+                    <div class="booking-summary-box card-glow">
+                        <div class="summary-line">
+                            <strong>Service Type:</strong>
+                            <span id="sumVenue">Studio Session</span>
+                        </div>
+                        <div class="summary-line">
+                            <strong>Selected Package:</strong>
+                            <span id="sumPackage">Royal Bridal HD Makeup</span>
+                        </div>
+                        <div class="summary-line">
+                            <strong>Add-ons selected:</strong>
+                            <span id="sumAddons">None</span>
+                        </div>
+                        <div class="summary-line">
+                            <strong>Date & Time:</strong>
+                            <span id="sumDateTime">2026-05-25 at 10:00 AM</span>
+                        </div>
+                        <div class="summary-line">
+                            <strong>Client:</strong>
+                            <span id="sumClient">Aditi Rijal</span>
+                        </div>
+                        <div class="summary-line" id="sumAddressLine" style="display: none;">
+                            <strong>Venue:</strong>
+                            <span id="sumAddress">Pokhara</span>
+                        </div>
+                        <hr class="summary-divider">
+                        <div class="price-breakdown">
+                            <div class="summary-line">
+                                <span>Base Price:</span>
+                                <span id="sumBasePrice">Rs. 25,000</span>
+                            </div>
+                            <div class="summary-line" id="sumTravelFeeLine">
+                                <span>Travel Fee:</span>
+                                <span id="sumTravelFee">Rs. 0</span>
+                            </div>
+                            <div class="summary-line highlight-price">
+                                <strong>Total Est. Price:</strong>
+                                <strong id="sumTotalPrice">Rs. 25,000</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-actions mt-4">
+                        <button class="btn btn-outline" id="btnStep5Back">Back</button>
+                        <button class="btn btn-primary" id="btnConfirmBooking">Confirm Booking</button>
+                    </div>
+                </div>
+
+                <!-- SUCCESS VIEW -->
+                <div class="wizard-step-panel" id="wizardSuccessPanel" style="display: none;">
+                    <div class="success-alert text-center">
+                        <div class="success-icon-badge">✓</div>
+                        <h3 class="step-title mt-3">Booking Pre-Confirmed!</h3>
+                        <p>Thank you for choosing Trendy Touch Makeup Studio. Babita Poudel or a booking manager will contact you within 2-4 hours to lock your slot.</p>
+
+                        <div class="success-ticket card-glow text-left mt-4 mb-4" style="text-align: left; padding: 20px; border-radius: 8px;">
+                            <div class="ticket-header" style="display: flex; justify-content: space-between; border-bottom: 1px dashed var(--color-border); padding-bottom: 10px; margin-bottom: 15px;">
+                                <span>Booking Receipt</span>
+                                <strong class="ticket-ref" id="ticketRef">TT-49212</strong>
+                            </div>
+                            <div class="ticket-body">
+                                <p style="margin: 5px 0;"><strong>Client Name:</strong> <span id="ticketName">Aditi Rijal</span></p>
+                                <p style="margin: 5px 0;"><strong>Package:</strong> <span id="ticketPackage">Royal Bridal HD Makeup</span></p>
+                                <p style="margin: 5px 0;"><strong>Venue:</strong> <span id="ticketVenue">Studio Session</span></p>
+                                <p style="margin: 5px 0;"><strong>Schedule:</strong> <span id="ticketDateTime">May 25, 2026 at 10:00 AM</span></p>
+                                <p class="ticket-price" style="margin-top: 15px; border-top: 1px solid var(--color-border); padding-top: 10px; font-size: 1.1rem; color: var(--color-accent-rose-dark);"><strong>Total Est. Price:</strong> <span id="ticketTotal">Rs. 25,000</span></p>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline w-100 mb-2" id="btnPrintReceipt">Print / Save Receipt</button>
+                        <a href="/" class="btn btn-primary w-100">Back to Website</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Script Entry -->
+    <script type="module" src="/src/bookings-page.js"></script>
+</body>
+
+</html>

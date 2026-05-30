@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academy Programs | Trendy Touch Makeup Studio</title>
+    <!-- Meta for SEO -->
+    <meta name="description" content="Certified professional makeup courses in Pokhara under Babita Poudel. Learn Bridal, Party, Editorial makeup, and business setup.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="page-academy">
+
+    <!-- Simple Dedicated Header -->
+    <header class="header standalone-header">
+        <div class="container header-container">
+            <a href="/" class="logo-link">
+                <img src="/logo.png" alt="Trendy Touch Makeup Studio" class="logo-img">
+            </a>
+            <div class="header-actions">
+                <a href="/" class="btn btn-outline">← Back to Home</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Academy content -->
+    <main class="academy-page-container container mt-5">
+        <div class="section-header text-center">
+            <span class="section-subtitle">Learn From The Master</span>
+            <h2 class="section-title">Student Learning Academy</h2>
+            <div class="accent-line"></div>
+            <p class="section-description">Unlock your creative potential. Babita Poudel offers professional certification courses with hand-on experience, client counseling workshops, and live session practices.</p>
+        </div>
+
+        <!-- Course Cards Selection -->
+        <div class="academy-grid mb-5">
+            <!-- Course 1 -->
+            <div class="course-card">
+                <div class="course-tag">Short Term</div>
+                <div class="course-header">
+                    <h3>Self-Makeup Mastery Course</h3>
+                    <span class="course-duration">7 Days (2 Hours/Day)</span>
+                </div>
+                <p class="course-description">Perfect for individuals who want to learn how to prep their own skin, choose the right foundation shade, and master quick daytime to dramatic night-out transformations.</p>
+                <div class="course-syllabus">
+                    <h4>What You'll Learn:</h4>
+                    <ul>
+                        <li>Understanding skin type and daily skincare prep</li>
+                        <li>Finding your perfect foundation match & color correction</li>
+                        <li>Quick 10-minute office/casual makeup look</li>
+                        <li>Classic winged liner, smoky eyes, and bold lips</li>
+                        <li>Personal cosmetic kit selection audit</li>
+                    </ul>
+                </div>
+                <div class="course-footer">
+                    <div class="course-price">Rs. 10,000</div>
+                    <button class="btn btn-outline btn-enroll-trigger" data-course="Self-Makeup Mastery Course">Enroll Now</button>
+                </div>
+            </div>
+
+            <!-- Course 2 -->
+            <div class="course-card primary-featured">
+                <div class="course-tag-featured">Professional Certification</div>
+                <div class="course-header">
+                    <h3>Professional Bridal Makeup Course</h3>
+                    <span class="course-duration">30 - 40 Days</span>
+                </div>
+                <p class="course-description">Become a certified professional makeup artist. Our intensive curriculum prepares you for a rewarding career in bridal makeup, fashion editorials, and commercial salons.</p>
+                <div class="course-syllabus">
+                    <h4>Complete Professional Syllabus:</h4>
+                    <ul>
+                        <li><strong>Week 1:</strong> Skin Anatomy, Advanced Sanitization, Color Wheel Theory</li>
+                        <li><strong>Week 2:</strong> Contouring, Highlighting, Baking & Face Shape Corrections</li>
+                        <li><strong>Week 3:</strong> Eye Artistry (Cut-crease, Halo, Glitters, Lash Art)</li>
+                        <li><strong>Week 4:</strong> Traditional Bridal looks (Nepali, Indian, Reception, Mehendi)</li>
+                        <li><strong>Week 5:</strong> Airbrush Makeup Mechanics, Saree/Dupatta Draping</li>
+                        <li><strong>Week 6:</strong> Hair styling foundations, business setup & social media branding</li>
+                    </ul>
+                </div>
+                <div class="course-footer">
+                    <div class="course-price">Rs. 45,000</div>
+                    <button class="btn btn-primary btn-enroll-trigger" data-course="Professional Bridal Makeup Course">Enroll Today</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enrollment Form Container (Invisible until triggered or defaults to Professional course) -->
+        <div class="enrollment-section-container card-glow" id="enrollmentSection" style="max-width: 700px; margin: 0 auto 50px auto;">
+            <h3 class="form-title text-center" id="enrollmentFormTitle">Academy Enrollment Inquiry</h3>
+            <p class="text-center mb-4">Register your seat for the professional training syllabus under Babita Poudel.</p>
+
+            <form id="enrollmentForm">
+                <div class="form-group mb-3">
+                    <label for="enrollCourse">Selected Course</label>
+                    <input type="text" id="enrollCourse" class="form-control" value="Professional Bridal Makeup Course" readonly>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="enrollName">Full Name</label>
+                    <input type="text" id="enrollName" class="form-control" placeholder="e.g. Karuna Bhandari" required>
+                </div>
+                <div class="form-row mb-3">
+                    <div class="form-group col-md-6">
+                        <label for="enrollPhone">Phone Number</label>
+                        <input type="tel" id="enrollPhone" class="form-control" placeholder="e.g. 9841XXXXXX" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="enrollEmail">Email Address</label>
+                        <input type="email" id="enrollEmail" class="form-control" placeholder="e.g. karuna@gmail.com" required>
+                    </div>
+                </div>
+                <div class="form-row mb-3">
+                    <div class="form-group col-md-12">
+                        <label for="enrollDate">Preferred Start Date</label>
+                        <input type="date" id="enrollDate" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="enrollNote">Any prior makeup experience or questions?</label>
+                    <textarea id="enrollNote" class="form-control" rows="2" placeholder="e.g. Complete beginner, or self-taught look adjustments..."></textarea>
+                </div>
+                
+                <div class="form-row mb-3" style="border-top: 1px dashed var(--color-border); padding-top: 15px; margin-top: 15px;">
+                    <div class="form-group col-md-6">
+                        <label for="enrollStudentId">Desired Username (Student ID)</label>
+                        <input type="text" id="enrollStudentId" class="form-control" placeholder="e.g. karuna123" required>
+                        <small class="text-muted" style="font-size: 0.75rem;">Used to log into your portal later</small>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="enrollPassword">Desired Password</label>
+                        <input type="password" id="enrollPassword" class="form-control" placeholder="••••••••" required>
+                    </div>
+                </div>
+                
+                <p style="font-size: 0.75rem; color: var(--color-text-muted); line-height: 1.4; margin-bottom: 15px;">
+                    ℹ️ <strong>Verification Policy:</strong> Your account will be registered as <strong>Pre-Booked</strong>. Access to the student learning portal is granted only after physical verification and fee structure confirmation at our studio during weekdays (Sunday to Friday, 10:00 AM - 3:00 PM).
+                </p>
+                
+                <button type="submit" class="btn btn-primary w-100" id="btnSubmitEnrollment">Submit Academy Inquiry</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Script Entry -->
+    <script type="module" src="/src/academy-page.js"></script>
+</body>
+
+</html>

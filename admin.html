@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Portal Dashboard | Trendy Touch Makeup Studio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="page-admin">
+
+    <!-- 1. LOGIN CONTAINER (Visible by default, hidden when authenticated) -->
+    <div id="adminLoginView" class="admin-login-wrapper">
+        <div class="booking-wizard-card small-card">
+            <div class="wizard-header text-center">
+                <h2>Staff Portal Access</h2>
+                <p>Welcome to Trendy Touch Academy & Studio Management</p>
+            </div>
+            <div class="wizard-body mt-3">
+                <form id="adminLoginForm">
+                    <div class="form-group mb-3">
+                        <label for="adminEmail">Staff Email</label>
+                        <input type="email" id="adminEmail" class="form-control text-center" placeholder="staff@trendytouch.com" required>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" class="form-control text-center" placeholder="••••••••" required>
+                    </div>
+                    <span id="loginError" class="text-danger mt-2 mb-3 d-block text-center" style="display:none;"></span>
+                    <button type="submit" class="btn btn-primary w-100" id="btnLoginSubmit">Access Dashboard</button>
+                </form>
+                <div class="text-center mt-3">
+                    <a href="/" style="font-size: 0.85rem; color: var(--color-accent-rose-dark); text-decoration: none;">← Back to Main Site</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. DASHBOARD VIEW (Hidden by default, shown when authenticated) -->
+    <div id="adminDashboardView" class="dashboard-portal-overlay-standalone" style="display: none;">
+        <!-- Dashboard Top Header Bar -->
+        <header class="dashboard-header">
+            <div class="container d-flex align-items-center justify-content-between">
+                <div class="dashboard-brand dashboard-brand-wrapper">
+                    <img src="/logo.png" alt="Trendy Touch" class="logo-img dashboard-logo">
+                    <div>
+                        <span class="logo-accent">Trendy Touch</span>
+                        <span class="badge badge-accent ml-2">Staff Workspace</span>
+                    </div>
+                </div>
+                <div class="dashboard-actions">
+                    <button class="btn btn-sm btn-outline mr-2" id="btnRequestNotification">
+                        🔔 Enable Desktop Alerts
+                    </button>
+                    <button class="btn btn-sm btn-primary" id="btnAdminLogout">
+                        Logout Session
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard View Container -->
+        <div class="dashboard-main container mt-4">
+            <!-- Metrics Scorecard Row -->
+            <div class="dashboard-metrics-grid">
+                <div class="metric-card card-glow" id="metricCardBookings">
+                    <div class="metric-icon">📁</div>
+                    <div class="metric-info">
+                        <h4 id="metricTotalBookings">0</h4>
+                        <p>Total Bookings Logged</p>
+                    </div>
+                </div>
+                <div class="metric-card card-glow">
+                    <div class="metric-icon">🎓</div>
+                    <div class="metric-info">
+                        <h4 id="metricActiveStudents">0</h4>
+                        <p>Academy Inquiries</p>
+                    </div>
+                </div>
+                <div class="metric-card card-glow" id="metricCardFeedbacks">
+                    <div class="metric-icon">⭐</div>
+                    <div class="metric-info">
+                        <h4 id="metricAverageRating">5.0 / 5</h4>
+                        <p>Avg. Customer Feedback</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Headers for Logs -->
+            <div class="dashboard-tabs">
+                <button class="dash-tab-btn active" id="tabBtnBookings">Bookings Register</button>
+                <button class="dash-tab-btn" id="tabBtnStudents">Student Enrollments</button>
+                <button class="dash-tab-btn" id="tabBtnFeedbacks">Client Feedback Log</button>
+                <button class="dash-tab-btn" id="tabBtnGallery">📷 Media Gallery</button>
+            </div>
+
+            <!-- Bookings List Panel -->
+            <div id="dash-bookings" class="dashboard-tab-panel active">
+                <div class="table-controls mb-3">
+                    <input type="text" id="bookingSearch" class="form-control search-input" placeholder="Search by name, phone or service...">
+                    <select id="bookingFilterStatus" class="form-control status-select">
+                        <option value="All">All Statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="Rescheduled">Rescheduled</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="table-responsive">
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Ref ID</th>
+                                <th>Client Name</th>
+                                <th>Venue</th>
+                                <th>Service / Package</th>
+                                <th>Schedule Date & Time</th>
+                                <th>Total Price</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingsTableBody">
+                            <!-- Dynamic bookings logs row -->
+                            <tr><td colspan="8" class="text-center text-muted">Loading bookings...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Student Enrollments Panel -->
+            <div id="dash-students" class="dashboard-tab-panel">
+                <div class="table-responsive">
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Contact details</th>
+                                <th>Selected Course</th>
+                                <th>Preferred Start Date</th>
+                                <th>Inquiry Note</th>
+                                <th>Enrolled Date</th>
+                                <th>Student ID</th>
+                                <th>Status</th>
+                                <th>Portal Access Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTableBody">
+                            <!-- Dynamic student logs row -->
+                            <tr><td colspan="9" class="text-center text-muted">Loading students...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Feedback Log Panel -->
+            <div id="dash-feedbacks" class="dashboard-tab-panel">
+                <div class="table-responsive">
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Client Name</th>
+                                <th>Service / Course</th>
+                                <th>Rating Stars</th>
+                                <th>Feedback / Comment</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="feedbacksTableBody">
+                            <!-- Dynamic feedbacks logs row -->
+                            <tr><td colspan="5" class="text-center text-muted">Loading feedbacks...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Media Gallery Admin Panel -->
+            <div id="dash-gallery" class="dashboard-tab-panel">
+                <!-- Upload New Post Form -->
+                <div class="gallery-upload-card card-glow">
+                    <h3 class="gallery-upload-title">📤 Post New Client Photo or Video</h3>
+                    <form id="galleryUploadForm">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="galleryPostedBy">Artist / Staff Name</label>
+                                <input type="text" id="galleryPostedBy" class="form-control" placeholder="e.g. Babita Poudel" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="galleryTag">Service Tag</label>
+                                <select id="galleryTag" class="form-control">
+                                    <option value="Bridal Glam">Bridal Glam</option>
+                                    <option value="Party Look">Party Look</option>
+                                    <option value="Editorial">Editorial</option>
+                                    <option value="Academy Transformation">Academy Transformation</option>
+                                    <option value="Before &amp; After">Before &amp; After</option>
+                                    <option value="Studio BTS">Studio BTS</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="galleryCaption">Caption</label>
+                            <input type="text" id="galleryCaption" class="form-control" placeholder="e.g. Stunning airbrush bridal look for Asmita's big day! ✨" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Select Photo or Video</label>
+                            <div class="gallery-file-drop" id="galleryFileDrop">
+                                <div class="file-drop-inner" id="fileDropInner">
+                                    <span class="file-drop-icon">📎</span>
+                                    <p>Click to select or drag & drop here</p>
+                                    <p class="file-hint">Photos: JPG, PNG, WEBP &nbsp;|&nbsp; Videos: MP4, MOV, WEBM (max 50MB)</p>
+                                </div>
+                                <input type="file" id="galleryFile" accept="image/*,video/*" style="display:none" required>
+                            </div>
+                            <div id="galleryFilePreview" class="gallery-file-preview" style="display:none"></div>
+                        </div>
+                        <div class="d-flex" style="justify-content: flex-end; gap: 12px; margin-top: 15px;">
+                            <button type="button" class="btn btn-outline" id="btnGalleryClear">Clear</button>
+                            <button type="submit" class="btn btn-primary" id="btnPublishPost">Publish to Client Feed</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Posted Gallery Items List -->
+                <div class="gallery-admin-list" id="galleryAdminList">
+                    <!-- Dynamically rendered -->
+                    <p class="text-center text-muted">Loading gallery feed...</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Audio Element for Mock Notification sound -->
+    <audio id="notificationSound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-84.wav" preload="auto"></audio>
+
+    <!-- In-App Custom Toast Notification Stack -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Script Entry -->
+    <script type="module" src="/src/admin-page.js"></script>
+</body>
+
+</html>
