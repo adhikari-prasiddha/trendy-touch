@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# 1. Redirect /index.html to /
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/index\.html\s [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
+# 2. Redirect /any-page.html to /any-page (excluding index.html which is handled above)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/((?!index)[^/]+)\.html\s [NC]
+RewriteRule ^([^/]+)\.html$ /$1 [R=301,L]
+
+# 3. Internally load /any-page as /any-page.html if the HTML file exists
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^([^/]+)$ $1.html [L]
