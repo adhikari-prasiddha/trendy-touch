@@ -1,6 +1,36 @@
 import { createStudentInquiry, fetchStudents } from './api.js';
+import { supabase } from './supabase.js';
+
+const COURSE_LIMITS = {
+    "Self-Makeup Mastery Course": 15,
+    "Professional Bridal Makeup Course": 10
+};
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Header scroll effect
+    window.addEventListener("scroll", () => {
+        const header = document.querySelector(".header");
+        if (header) header.classList.toggle("scrolled", window.scrollY > 50);
+    }, { passive: true });
+
+    // Mobile nav
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileNav = document.getElementById("mobileNav");
+    const mobileNavClose = document.getElementById("mobileNavClose");
+    if (menuToggle && mobileNav) {
+        menuToggle.addEventListener("click", (e) => { e.stopPropagation(); mobileNav.classList.add("open"); });
+    }
+    if (mobileNavClose && mobileNav) {
+        mobileNavClose.addEventListener("click", () => mobileNav.classList.remove("open"));
+    }
+    document.addEventListener("click", (e) => {
+        if (mobileNav && mobileNav.classList.contains("open")) {
+            if (!mobileNav.contains(e.target) && menuToggle && !menuToggle.contains(e.target)) {
+                mobileNav.classList.remove("open");
+            }
+        }
+    });
+
     // 1. Set minimum date on enrollment form
     const dateInput = document.getElementById("enrollDate");
     if (dateInput) {
@@ -23,7 +53,59 @@ document.addEventListener("DOMContentLoaded", () => {
     if (form) {
         form.addEventListener("submit", handleEnrollmentSubmit);
     }
+
+    // 5. Initial Seats Calculation & Realtime Subscription
+    updateSeatsCount();
+    subscribeToSeatsRealtime();
 });
+
+async function updateSeatsCount() {
+    try {
+        const students = await fetchStudents();
+        const counts = {
+            "Self-Makeup Mastery Course": 0,
+            "Professional Bridal Makeup Course": 0
+        };
+        
+        students.forEach(student => {
+            if (student.status !== "Dropped" && counts[student.course_name] !== undefined) {
+                counts[student.course_name]++;
+            }
+        });
+        
+        const selfMakeupEl = document.getElementById("seats-self-makeup");
+        if (selfMakeupEl) {
+            const total = COURSE_LIMITS["Self-Makeup Mastery Course"];
+            const left = total - (counts["Self-Makeup Mastery Course"] || 0);
+            selfMakeupEl.innerHTML = left <= 0 
+                ? `<span class="text-danger" style="font-weight: 700;">❌ Course Full (0 / ${total} seats left)</span>`
+                : `🔥 Only <strong>${left}</strong> of ${total} seats remaining!`;
+        }
+        
+        const bridalMakeupEl = document.getElementById("seats-bridal-makeup");
+        if (bridalMakeupEl) {
+            const total = COURSE_LIMITS["Professional Bridal Makeup Course"];
+            const left = total - (counts["Professional Bridal Makeup Course"] || 0);
+            bridalMakeupEl.innerHTML = left <= 0
+                ? `<span style="color: #ff8a80; font-weight: bold;">❌ Course Full (0 / ${total} seats left)</span>`
+                : `✨ Only <strong>${left}</strong> of ${total} seats remaining!`;
+        }
+    } catch (e) {
+        console.error("Error updating seats count:", e);
+    }
+}
+
+function subscribeToSeatsRealtime() {
+    if (!supabase) return;
+    
+    supabase
+        .channel('public:students')
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'students' }, () => {
+            console.log("Realtime: Students table changed, updating seats...");
+            updateSeatsCount();
+        })
+        .subscribe();
+}
 
 function parseQueryParams() {
     const params = new URLSearchParams(window.location.search);

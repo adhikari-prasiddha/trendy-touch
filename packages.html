@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packages | Trendy Touch Makeup Studio</title>
+    <!-- Meta Descriptions for SEO -->
+    <meta name="description"
+        content="View our transparent makeup pricing packages. Bridal HD and Airbrush packages, party glams, and casual glowing makeups in Pokhara by Babita Poudel.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="page-packages">
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo-link">
+                <img src="/logo.png" alt="Trendy Touch Makeup Studio" class="logo-img">
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="packages.html" class="nav-link active">Packages</a>
+                <a href="academy.html" class="nav-link">Academy</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="reviews.html" class="nav-link">Reviews</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <a href="booking.html" class="btn btn-primary">Book Now</a>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close Navigation">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link">Home</a>
+            <a href="services.html" class="mobile-nav-link">Services</a>
+            <a href="packages.html" class="mobile-nav-link active">Packages</a>
+            <a href="academy.html" class="mobile-nav-link">Academy</a>
+            <a href="products.html" class="mobile-nav-link">Products</a>
+            <a href="reviews.html" class="mobile-nav-link">Reviews</a>
+            <a href="gallery.html" class="mobile-nav-link">Gallery</a>
+            <a href="contact.html" class="mobile-nav-link">Contact</a>
+            <hr class="mobile-nav-divider">
+            <a href="booking.html" class="btn btn-primary w-100">Book Now</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main style="padding-top: 120px; padding-bottom: 80px;">
+        <section id="packages" class="packages-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">Pricing Packages</span>
+                    <h2 class="section-title">Transparent Luxury Price List</h2>
+                    <div class="accent-line"></div>
+                    <p class="section-description">Choose a package tailored to your exact beauty needs. All rates are
+                        inclusive of primary styling, lash sets, and skincare preps.</p>
+                </div>
+
+                <!-- Category Tab Headers -->
+                <div class="package-tabs">
+                    <button class="tab-btn active" id="tabBtnBridal">Bridal Packages</button>
+                    <button class="tab-btn" id="tabBtnParty">Party & Special Event</button>
+                    <button class="tab-btn" id="tabBtnCasual">Casual & Editorial</button>
+                </div>
+
+                <!-- Tab Content: Bridal -->
+                <div id="tab-bridal" class="package-tab-content active">
+                    <div class="packages-grid scroll-sliding-mobile">
+                        <div class="package-card">
+                            <div class="package-header">
+                                <h3>Royal Bridal HD Makeup</h3>
+                                <div class="price">Rs. 25,000</div>
+                            </div>
+                            <ul class="package-features">
+                                <li>Premium High-Definition Makeup</li>
+                                <li>Ultra-lasting, photogenic airbrush-like finish</li>
+                                <li>Luxury Hair Styling & Hair Extension placement</li>
+                                <li>Dupatta/Saree draping and jewelry setting</li>
+                                <li>Skincare prepping and 3D eyelashes</li>
+                            </ul>
+                            <a href="booking.html?category=Bridal&package=Royal%20Bridal%20HD%20Makeup" class="btn btn-primary w-100">Book Package</a>
+                        </div>
+
+                        <div class="package-card featured">
+                            <div class="featured-badge">Elite Choice</div>
+                            <div class="package-header">
+                                <h3>Premium Bridal Airbrush</h3>
+                                <div class="price">Rs. 35,000</div>
+                            </div>
+                            <ul class="package-features">
+                                <li>Original Airbrush Makeup application</li>
+                                <li>Completely sweat-proof & waterproof (24hr lock)</li>
+                                <li>High-End Hair Sculpting with premium flowers/accessories</li>
+                                <li>Outfit styling, heavy jewelry setting & draping</li>
+                                <li>Luxury bio-cellulose facial hydration treatment</li>
+                                <li>Custom premium mink eyelash set</li>
+                            </ul>
+                            <a href="booking.html?category=Bridal&package=Premium%20Bridal%20Airbrush" class="btn btn-primary w-100">Book Elite Package</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Party -->
+                <div id="tab-party" class="package-tab-content">
+                    <div class="packages-grid scroll-sliding-mobile">
+                        <div class="package-card">
+                            <div class="package-header">
+                                <h3>Glamorous Party Makeup</h3>
+                                <div class="price">Rs. 8,000</div>
+                            </div>
+                            <ul class="package-features">
+                                <li>High Definition party glam base</li>
+                                <li>Custom eye makeup (shimmer/glitter/matte)</li>
+                                <li>Standard hair styling (curls/straightening/half-up)</li>
+                                <li>Professional false eyelashes</li>
+                                <li>Long-lasting setting spray locking</li>
+                            </ul>
+                            <a href="booking.html?category=Party&package=Glamorous%20Party%20Makeup" class="btn btn-primary w-100">Book Package</a>
+                        </div>
+
+                        <div class="package-card">
+                            <div class="package-header">
+                                <h3>Engagement / Reception</h3>
+                                <div class="price">Rs. 15,000</div>
+                            </div>
+                            <ul class="package-features">
+                                <li>Luxury high-coverage semi-bridal makeup</li>
+                                <li>Premium hair styling with hair padding/styling spray</li>
+                                <li>Saree or lehenga draping & jewelry security pins</li>
+                                <li>Premium lashes & glowing highlight finish</li>
+                                <li>15-minute hydrating facial prep</li>
+                            </ul>
+                            <a href="booking.html?category=Party&package=Engagement%20%2F%20Reception" class="btn btn-primary w-100">Book Package</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Casual -->
+                <div id="tab-casual" class="package-tab-content">
+                    <div class="packages-grid scroll-sliding-mobile">
+                        <div class="package-card">
+                            <div class="package-header">
+                                <h3>Casual Glow Makeup</h3>
+                                <div class="price">Rs. 5,000</div>
+                            </div>
+                            <ul class="package-features">
+                                <li>Lightweight, natural skin-like foundation base</li>
+                                <li>Soft neutral eye definition</li>
+                                <li>Basic hair styling (simple blow-dry or waves)</li>
+                                <li>Gentle hydration and lip stain</li>
+                                <li>Perfect for daytime birthdays or casual dinners</li>
+                            </ul>
+                            <a href="booking.html?category=Casual&package=Casual%20Glow%20Makeup" class="btn btn-primary w-100">Book Package</a>
+                        </div>
+
+                        <div class="package-card">
+                            <div class="package-header">
+                                <h3>Editorial / Photoshoot</h3>
+                                <div class="price">Rs. 12,000</div>
+                            </div>
+                            <ul class="package-features">
+                                <li>Camera-ready matte/dewy high contrast makeup</li>
+                                <li>Creative styling / Bold lips / graphic eyeliners if requested</li>
+                                <li>Sleek or artistic hair styling</li>
+                                <li>Body glow shimmer highlights</li>
+                                <li>On-set touch-ups guide</li>
+                            </ul>
+                            <a href="booking.html?category=Casual&package=Editorial%20%2F%20Photoshoot" class="btn btn-primary w-100">Book Package</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add-ons Box -->
+                <div class="add-ons-container card-glow mt-5">
+                    <h3 class="add-ons-title">Customize with Luxury Add-ons</h3>
+                    <div class="add-ons-grid">
+                        <div class="addon-item">
+                            <span class="addon-name">Gel Nail Art (Custom designs & stones)</span>
+                            <span class="addon-price">+ Rs. 2,000</span>
+                        </div>
+                        <div class="addon-item">
+                            <span class="addon-name">Hair Extensions Setup (Rental or installation)</span>
+                            <span class="addon-price">+ Rs. 3,500</span>
+                        </div>
+                        <div class="addon-item">
+                            <span class="addon-name">Hydra-Glow Sheet Mask Pre-Treatment</span>
+                            <span class="addon-price">+ Rs. 1,500</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="contact" class="footer-section">
+        <div class="container footer-container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <a href="index.html" class="logo-link mb-3 d-inline-block">
+                        <img src="/logo.png" alt="Trendy Touch Logo" class="logo-img footer-logo">
+                    </a>
+                    <p class="mb-4">Luxury makeup styling & certified cosmetics academy by Babita Poudel. Creating
+                        beautiful moments and professional careers since 2018.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="YouTube">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                                </path>
+                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Contact Information</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                            <div>
+                                <span class="d-block text-muted">Phone Number</span>
+                                <a href="tel:+9779801234567" class="contact-link">+977-9801234567</a>
+                                <button class="btn-copy" id="btnCopyPhone">Copy</button>
+                            </div>
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <div>
+                                <span class="d-block text-muted">Email Address</span>
+                                <a href="mailto:info@trendytouchmakeup.com"
+                                    class="contact-link">info@trendytouchmakeup.com</a>
+                                <button class="btn-copy" id="btnCopyEmail">Copy</button>
+                            </div>
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <div>
+                                <span class="d-block text-muted">Studio Location</span>
+                                <span class="contact-text">Siddhartha chowk, Pokhara, Nepal</span>
+                                <button class="btn-copy" id="btnCopyAddress">Copy</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-map">
+                    <h3>Find Us On Maps</h3>
+                    <div class="map-shortcut-card">
+                        <div class="map-icon-circle">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon>
+                                <line x1="9" y1="3" x2="9" y2="18"></line>
+                                <line x1="15" y1="6" x2="15" y2="21"></line>
+                            </svg>
+                        </div>
+                        <p class="mb-3 text-center">Open direction routes instantly in Google Maps to Siddhartha Chowk Studio.</p>
+                        <a href="https://maps.app.goo.gl/CWcjntTRvLyaaES86" target="_blank" class="btn btn-outline w-100 btn-sm text-center">Get Directions</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Trendy Touch Makeup Studio & Academy. All Rights Reserved. Designed for elegance.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        document.addEventListener("DOMContentLoaded", () => {
+            // Header scroll
+            window.addEventListener("scroll", () => {
+                const header = document.querySelector(".header");
+                if (header) header.classList.toggle("scrolled", window.scrollY > 50);
+            }, { passive: true });
+
+            // Mobile nav toggle
+            const menuToggle = document.getElementById("menuToggle");
+            const mobileNav = document.getElementById("mobileNav");
+            const mobileNavClose = document.getElementById("mobileNavClose");
+
+            if (menuToggle && mobileNav) {
+                menuToggle.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    mobileNav.classList.add("open");
+                });
+            }
+            if (mobileNavClose && mobileNav) {
+                mobileNavClose.addEventListener("click", () => mobileNav.classList.remove("open"));
+            }
+            document.addEventListener("click", (e) => {
+                if (mobileNav && mobileNav.classList.contains("open")) {
+                    if (!mobileNav.contains(e.target) && menuToggle && !menuToggle.contains(e.target)) {
+                        mobileNav.classList.remove("open");
+                    }
+                }
+            });
+
+            // Package tab switching
+            const tabBtnBridal = document.getElementById("tabBtnBridal");
+            const tabBtnParty = document.getElementById("tabBtnParty");
+            const tabBtnCasual = document.getElementById("tabBtnCasual");
+
+            const tabBridal = document.getElementById("tab-bridal");
+            const tabParty = document.getElementById("tab-party");
+            const tabCasual = document.getElementById("tab-casual");
+
+            function activateTab(btn, tab) {
+                document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+                document.querySelectorAll(".package-tab-content").forEach(t => t.classList.remove("active"));
+                btn.classList.add("active");
+                tab.classList.add("active");
+            }
+
+            if (tabBtnBridal && tabBridal) {
+                tabBtnBridal.addEventListener("click", () => activateTab(tabBtnBridal, tabBridal));
+            }
+            if (tabBtnParty && tabParty) {
+                tabBtnParty.addEventListener("click", () => activateTab(tabBtnParty, tabParty));
+            }
+            if (tabBtnCasual && tabCasual) {
+                tabBtnCasual.addEventListener("click", () => activateTab(tabBtnCasual, tabCasual));
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,97 +1,356 @@
-import { fetchFeedbacks, submitFeedback, fetchGallery } from './api.js';
+import { fetchFeedbacks, fetchStudents } from './api.js';
+import { supabase } from './supabase.js';
 
-// Global reference variables
+// Global variables
 let currentSlideIndex = 0;
 let feedbacksCache = [];
-let galleryCache = [];
-let currentGalleryFilter = 'all';
+let homeGalleryIndex = 0;
+let homeGalleryAutoTimer = null;
 
-// Initialize Landing Page
+const homeGalleryItems = [
+    {
+        type: "photo",
+        media_url: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&auto=format&fit=crop",
+        caption: "Stunning Royal Bridal HD transformation by Babita Poudel.",
+        tag: "Bridal Signature"
+    },
+    {
+        type: "video",
+        media_url: "https://assets.mixkit.co/videos/preview/mixkit-beautiful-woman-applying-makeup-in-front-of-mirror-40292-large.mp4",
+        caption: "BTS video: traditional saree draping and gold jewelry setting.",
+        tag: "Studio BTS"
+    },
+    {
+        type: "photo",
+        media_url: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=900&auto=format&fit=crop",
+        caption: "Engagement glam featuring dewy highlights and soft curls.",
+        tag: "Engagement Glow"
+    },
+    {
+        type: "video",
+        media_url: "https://assets.mixkit.co/videos/preview/mixkit-woman-working-on-a-creative-project-at-home-40192-large.mp4",
+        caption: "Founder Babita Poudel demonstrating professional blending techniques.",
+        tag: "Masterclass Clip"
+    },
+    {
+        type: "photo",
+        media_url: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=900&auto=format&fit=crop",
+        caption: "Glamorous night-out look with deep kohl eyes and bold lips.",
+        tag: "Evening Glam"
+    }
+];
+
+const COURSE_LIMITS = {
+    "Self-Makeup Mastery Course": 15,
+    "Professional Bridal Makeup Course": 10
+};
+
+// =============================================
+// PAGE INITIALIZATION
+// =============================================
 document.addEventListener("DOMContentLoaded", () => {
-    // Scroll background changes for Header
-    window.addEventListener("scroll", () => {
-        const header = document.querySelector(".header");
-        if (header) {
-            if (window.scrollY > 50) {
-                header.classList.add("scrolled");
-            } else {
-                header.classList.remove("scrolled");
-            }
-        }
-        highlightActiveSection();
-    });
+    // 1. Header scroll effect
+    window.addEventListener("scroll", handleScrollEffects, { passive: true });
+    handleScrollEffects(); // Trigger immediately to evaluate admin visibility on load
 
-    // Mobile Hamburger Toggle
+    // 2. Navigation highlight
+    highlightPageNavigation();
+
+    // 3. Mobile hamburger menu
+    initMobileNav();
+
+    // 4. Owner biography modal
+    initOwnerModal();
+
+    // 5. Home gallery carousel
+    initHomeGallerySlides();
+
+    // 6. Clipboard copy buttons
+    setupClipboardCopy();
+
+    // 7. Course seat availability (only relevant on home page)
+    updateSeatsCount();
+    subscribeToSeatsRealtime();
+
+    // 8. Testimonials slider
+    loadTestimonials();
+});
+
+// =============================================
+// SCROLL EFFECTS
+// =============================================
+function handleScrollEffects() {
+    // Header background on scroll
+    const header = document.querySelector(".header");
+    if (header) {
+        header.classList.toggle("scrolled", window.scrollY > 50);
+    }
+
+    const scrollBottom = window.scrollY + window.innerHeight;
+    const docHeight = document.body.offsetHeight;
+
+    // Floating map button — appears near footer
+    const mapBtn = document.getElementById("mapLocationBtn");
+    if (mapBtn) {
+        mapBtn.classList.toggle("show", scrollBottom >= docHeight - 800);
+    }
+
+    // Floating Admin button — appears near footer if user is authorized staff/admin
+    const adminBtn = document.getElementById("adminPortalBtn");
+    if (adminBtn) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const hasStaffParam = urlParams.has("role") && urlParams.get("role") === "staff";
+        const hasStaffStorage = localStorage.getItem("trendyTouchRole") === "staff";
+
+        if (hasStaffParam || hasStaffStorage) {
+            // Save state so parameter isn't needed on next reload
+            if (hasStaffParam) localStorage.setItem("trendyTouchRole", "staff");
+
+            adminBtn.style.display = "flex";
+            // Check scroll bottom condition just like mapBtn
+            const isNearBottom = scrollBottom >= docHeight - 800;
+            if (isNearBottom) {
+                adminBtn.style.opacity = "1";
+                adminBtn.style.pointerEvents = "auto";
+                adminBtn.style.transform = "scale(1) translateY(0)";
+            } else {
+                adminBtn.style.opacity = "0";
+                adminBtn.style.pointerEvents = "none";
+                adminBtn.style.transform = "scale(0.8) translateY(20px)";
+            }
+        } else {
+            adminBtn.style.display = "none";
+        }
+    }
+}
+
+// =============================================
+// NAVIGATION
+// =============================================
+function highlightPageNavigation() {
+    const path = window.location.pathname;
+    const page = path.split("/").pop() || "index.html";
+    document.querySelectorAll(".nav-link, .mobile-nav-link").forEach(link => {
+        const href = link.getAttribute("href");
+        const isActive = href === page
+            || (page === "index.html" && (href === "/" || href === ""))
+            || (page === "" && (href === "/" || href === "index.html"));
+        link.classList.toggle("active", isActive);
+    });
+}
+
+function initMobileNav() {
     const menuToggle = document.getElementById("menuToggle");
     const mobileNav = document.getElementById("mobileNav");
     const mobileNavClose = document.getElementById("mobileNavClose");
 
     if (menuToggle && mobileNav) {
-        menuToggle.addEventListener("click", () => mobileNav.classList.add("open"));
+        menuToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            mobileNav.classList.add("open");
+        });
     }
     if (mobileNavClose && mobileNav) {
-        mobileNavClose.addEventListener("click", () => mobileNav.classList.remove("open"));
-    }
-
-    // Interactive Star Rating Setup
-    setupStarRating();
-
-    // Clipboard copy buttons
-    setupClipboardCopy();
-
-    // Floating Widget Options
-    const widgetToggle = document.getElementById("widgetToggle");
-    const widgetOptions = document.getElementById("widgetOptions");
-    if (widgetToggle && widgetOptions) {
-        widgetToggle.addEventListener("click", () => {
-            widgetOptions.classList.toggle("open");
+        mobileNavClose.addEventListener("click", () => {
+            mobileNav.classList.remove("open");
         });
     }
 
-    // Feedback Submission handler
-    const feedbackForm = document.getElementById("feedbackForm");
-    if (feedbackForm) {
-        feedbackForm.addEventListener("submit", handleFeedbackSubmit);
-    }
-
-    // Gallery Filter Tabs handlers
-    setupGalleryFilters();
-
-    // Load data from Supabase
-    loadTestimonials();
-    loadGalleryFeed();
-});
-
-// Auto highlighting navbar based on section scroll
-function highlightActiveSection() {
-    const sections = document.querySelectorAll("section, footer");
-    const navLinks = document.querySelectorAll(".nav-link");
-    let current = "";
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (window.scrollY >= (sectionTop - 120)) {
-            current = section.getAttribute("id");
+    // Close when clicking outside nav
+    document.addEventListener("click", (e) => {
+        if (mobileNav && mobileNav.classList.contains("open")) {
+            if (!mobileNav.contains(e.target) && menuToggle && !menuToggle.contains(e.target)) {
+                mobileNav.classList.remove("open");
+            }
         }
     });
 
-    navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === `#${current}`) {
-            link.classList.add("active");
-        }
+    // Close nav links on click (navigates to new page)
+    document.querySelectorAll(".mobile-nav-link").forEach(link => {
+        link.addEventListener("click", () => {
+            if (mobileNav) mobileNav.classList.remove("open");
+        });
     });
 }
 
-// Mobile nav close wrapper helper
-window.toggleMobileMenu = function() {
+// Global toggle for inline onclick (used in some pages)
+window.toggleMobileMenu = function () {
     const mobileNav = document.getElementById("mobileNav");
-    if (mobileNav) {
-        mobileNav.classList.toggle("open");
-    }
+    if (mobileNav) mobileNav.classList.toggle("open");
 };
 
-// Clipboard copy controls helper
+// =============================================
+// OWNER BIOGRAPHY MODAL
+// =============================================
+function initOwnerModal() {
+    const ownerTrigger = document.getElementById("ownerPhotoTrigger");
+    const ownerModal = document.getElementById("ownerModal");
+    const ownerClose = document.getElementById("ownerModalClose");
+
+    if (ownerTrigger && ownerModal) {
+        ownerTrigger.addEventListener("click", () => {
+            ownerModal.classList.add("open");
+            document.body.style.overflow = "hidden";
+        });
+    }
+
+    if (ownerModal) {
+        if (ownerClose) {
+            ownerClose.addEventListener("click", closeOwnerModal);
+        }
+        ownerModal.addEventListener("click", (e) => {
+            if (e.target === ownerModal) closeOwnerModal();
+        });
+    }
+}
+
+function closeOwnerModal() {
+    const ownerModal = document.getElementById("ownerModal");
+    if (ownerModal) ownerModal.classList.remove("open");
+    document.body.style.overflow = "";
+}
+
+// =============================================
+// HOME GALLERY SLIDESHOW
+// =============================================
+function initHomeGallerySlides() {
+    const slidesContainer = document.getElementById("homeGallerySlides");
+    if (!slidesContainer) return;
+
+    slidesContainer.innerHTML = "";
+
+    homeGalleryItems.forEach((item, i) => {
+        const slide = document.createElement("div");
+        slide.className = "home-gallery-slide" + (i === 0 ? " active" : "");
+
+        const mediaHtml = item.type === "video"
+            ? `<video src="${item.media_url}" autoplay muted loop playsinline></video>`
+            : `<img src="${item.media_url}" alt="${escapeHtml(item.caption)}" loading="${i === 0 ? 'eager' : 'lazy'}">`;
+
+        slide.innerHTML = `
+            ${mediaHtml}
+            <div class="home-gallery-slide-overlay">
+                <span class="gallery-slide-tag">${escapeHtml(item.tag)}</span>
+                <p class="home-gallery-caption">${escapeHtml(item.caption)}</p>
+            </div>
+        `;
+        slidesContainer.appendChild(slide);
+    });
+
+    // Arrow buttons
+    const prevBtn = document.getElementById("btnPrevHomeGallery");
+    const nextBtn = document.getElementById("btnNextHomeGallery");
+    if (prevBtn) prevBtn.addEventListener("click", () => changeHomeGallerySlide(-1));
+    if (nextBtn) nextBtn.addEventListener("click", () => changeHomeGallerySlide(1));
+
+    // Auto advance every 5 seconds
+    homeGalleryAutoTimer = setInterval(() => changeHomeGallerySlide(1), 5000);
+
+    // Build dot indicators
+    buildGalleryDots();
+}
+
+function buildGalleryDots() {
+    const carousel = document.querySelector(".home-gallery-carousel");
+    if (!carousel) return;
+
+    let dotsContainer = carousel.querySelector(".gallery-dots");
+    if (!dotsContainer) {
+        dotsContainer = document.createElement("div");
+        dotsContainer.className = "gallery-dots";
+        carousel.appendChild(dotsContainer);
+    }
+
+    homeGalleryItems.forEach((_, i) => {
+        const dot = document.createElement("button");
+        dot.className = "gallery-dot" + (i === 0 ? " active" : "");
+        dot.setAttribute("aria-label", `Slide ${i + 1}`);
+        dot.addEventListener("click", () => goToHomeGallerySlide(i));
+        dotsContainer.appendChild(dot);
+    });
+}
+
+function changeHomeGallerySlide(direction) {
+    const slides = document.querySelectorAll(".home-gallery-slide");
+    if (!slides.length) return;
+    const newIndex = (homeGalleryIndex + direction + slides.length) % slides.length;
+    goToHomeGallerySlide(newIndex);
+}
+
+function goToHomeGallerySlide(newIndex) {
+    const slides = document.querySelectorAll(".home-gallery-slide");
+    const dots = document.querySelectorAll(".gallery-dot");
+
+    if (slides[homeGalleryIndex]) slides[homeGalleryIndex].classList.remove("active");
+    if (dots[homeGalleryIndex]) dots[homeGalleryIndex].classList.remove("active");
+
+    homeGalleryIndex = newIndex;
+
+    if (slides[homeGalleryIndex]) slides[homeGalleryIndex].classList.add("active");
+    if (dots[homeGalleryIndex]) dots[homeGalleryIndex].classList.add("active");
+}
+
+// =============================================
+// COURSE SEAT AVAILABILITY (Home Page)
+// =============================================
+async function updateSeatsCount() {
+    // Only run if seat counter elements exist
+    const selfMakeupEl = document.getElementById("seats-self-makeup");
+    const bridalMakeupEl = document.getElementById("seats-bridal-makeup");
+    if (!selfMakeupEl && !bridalMakeupEl) return;
+
+    try {
+        const students = await fetchStudents();
+        const counts = {
+            "Self-Makeup Mastery Course": 0,
+            "Professional Bridal Makeup Course": 0
+        };
+
+        students.forEach(student => {
+            if (student.status !== "Dropped" && counts[student.course_name] !== undefined) {
+                counts[student.course_name]++;
+            }
+        });
+
+        if (selfMakeupEl) {
+            const total = COURSE_LIMITS["Self-Makeup Mastery Course"];
+            const left = total - (counts["Self-Makeup Mastery Course"] || 0);
+            selfMakeupEl.innerHTML = left <= 0
+                ? `<span class="text-danger" style="font-weight:700;">❌ Course Full (0 / ${total} seats left)</span>`
+                : `🔥 Only <strong>${left}</strong> of ${total} seats remaining!`;
+        }
+
+        if (bridalMakeupEl) {
+            const total = COURSE_LIMITS["Professional Bridal Makeup Course"];
+            const left = total - (counts["Professional Bridal Makeup Course"] || 0);
+            bridalMakeupEl.innerHTML = left <= 0
+                ? `<span style="color:#ff8a80;font-weight:bold;">❌ Course Full (0 / ${total} seats left)</span>`
+                : `✨ Only <strong>${left}</strong> of ${total} seats remaining!`;
+        }
+    } catch (e) {
+        console.warn("Seats update skipped:", e.message);
+        if (selfMakeupEl) selfMakeupEl.innerHTML = "Inquire for availability";
+        if (bridalMakeupEl) bridalMakeupEl.innerHTML = "Inquire for availability";
+    }
+}
+
+function subscribeToSeatsRealtime() {
+    if (!supabase) return;
+    try {
+        supabase
+            .channel('home-students-watch')
+            .on('postgres_changes', { event: '*', schema: 'public', table: 'students' }, () => {
+                updateSeatsCount();
+            })
+            .subscribe();
+    } catch (e) {
+        console.warn("Realtime seat watch not available:", e.message);
+    }
+}
+
+// =============================================
+// CLIPBOARD COPY
+// =============================================
 function setupClipboardCopy() {
     const actions = [
         { btn: 'btnCopyPhone', text: '+9779801234567' },
@@ -101,27 +360,27 @@ function setupClipboardCopy() {
 
     actions.forEach(act => {
         const button = document.getElementById(act.btn);
-        if (button) {
-            button.addEventListener("click", () => {
-                navigator.clipboard.writeText(act.text).then(() => {
-                    const originalText = button.textContent;
-                    button.textContent = "Copied!";
-                    button.style.backgroundColor = "var(--color-accent-gold)";
-                    button.style.borderColor = "var(--color-accent-gold)";
-                    
-                    setTimeout(() => {
-                        button.textContent = originalText;
-                        button.style.backgroundColor = "";
-                        button.style.borderColor = "";
-                    }, 2000);
-                }).catch(err => console.error("Clipboard copy failed:", err));
-            });
-        }
+        if (!button) return;
+        button.addEventListener("click", () => {
+            navigator.clipboard.writeText(act.text).then(() => {
+                const orig = button.textContent;
+                button.textContent = "Copied!";
+                button.style.backgroundColor = "var(--color-accent-gold)";
+                button.style.color = "#000";
+                setTimeout(() => {
+                    button.textContent = orig;
+                    button.style.backgroundColor = "";
+                    button.style.color = "";
+                }, 2000);
+            }).catch(err => console.error("Clipboard copy failed:", err));
+        });
     });
 }
 
-// Collapsible accordion details
-window.toggleAccordion = function(element) {
+// =============================================
+// ACCORDION (used on services/packages pages)
+// =============================================
+window.toggleAccordion = function (element) {
     const parent = element.parentElement;
     const items = parent.querySelectorAll(".accordion-item");
     const isActive = element.classList.contains("active");
@@ -139,15 +398,16 @@ window.toggleAccordion = function(element) {
     }
 };
 
-// Load reviews from Supabase and render
+// =============================================
+// TESTIMONIALS SLIDER
+// =============================================
 async function loadTestimonials() {
     const slider = document.getElementById("testimonialsSlider");
     if (!slider) return;
 
     try {
         feedbacksCache = await fetchFeedbacks();
-        
-        // Seed default feedbacks if database is empty
+
         if (feedbacksCache.length === 0) {
             feedbacksCache = [
                 { name: "Nisha Gurung", service: "Premium Bridal Airbrush", rating: 5, comment: "Babita is an absolute genius! My wedding makeup was flawless, sweatproof, and lasted until late night reception. Worth every single Rupee!" },
@@ -157,15 +417,12 @@ async function loadTestimonials() {
         }
 
         renderTestimonials();
-        
-        // Auto advance every 8 seconds
-        setInterval(nextSlide, 8000);
+        setInterval(nextTestimonialSlide, 8000);
 
-        // Bind control buttons
         const prevBtn = document.getElementById("btnPrevTestimonial");
         const nextBtn = document.getElementById("btnNextTestimonial");
-        if (prevBtn) prevBtn.addEventListener("click", prevSlide);
-        if (nextBtn) nextBtn.addEventListener("click", nextSlide);
+        if (prevBtn) prevBtn.addEventListener("click", prevTestimonialSlide);
+        if (nextBtn) nextBtn.addEventListener("click", nextTestimonialSlide);
 
     } catch (e) {
         console.error("Testimonials loading failed:", e);
@@ -175,14 +432,13 @@ async function loadTestimonials() {
 function renderTestimonials() {
     const slider = document.getElementById("testimonialsSlider");
     if (!slider) return;
-
     slider.innerHTML = "";
+
     feedbacksCache.forEach(fb => {
         let starsHtml = "";
         for (let i = 1; i <= 5; i++) {
             starsHtml += i <= fb.rating ? "&#9733;" : "&#9734;";
         }
-
         const slide = document.createElement("div");
         slide.className = "testimonial-slide";
         slide.innerHTML = `
@@ -196,179 +452,42 @@ function renderTestimonials() {
         slider.appendChild(slide);
     });
 
-    updateSliderPosition();
+    updateTestimonialPosition();
 }
 
-function updateSliderPosition() {
+function updateTestimonialPosition() {
     const slider = document.getElementById("testimonialsSlider");
-    if (slider) {
-        slider.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
-    }
+    if (slider) slider.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
 }
 
-function nextSlide() {
-    if (feedbacksCache.length === 0) return;
+function nextTestimonialSlide() {
+    if (!feedbacksCache.length) return;
     currentSlideIndex = (currentSlideIndex + 1) % feedbacksCache.length;
-    updateSliderPosition();
+    updateTestimonialPosition();
 }
 
-function prevSlide() {
-    if (feedbacksCache.length === 0) return;
+function prevTestimonialSlide() {
+    if (!feedbacksCache.length) return;
     currentSlideIndex = (currentSlideIndex - 1 + feedbacksCache.length) % feedbacksCache.length;
-    updateSliderPosition();
+    updateTestimonialPosition();
 }
 
-// Feedback Rating Selection
-function setupStarRating() {
-    const stars = document.querySelectorAll(".star-input");
-    const ratingInput = document.getElementById("fbRating");
-    if (!stars.length) return;
-
-    stars.forEach(star => {
-        star.addEventListener("click", () => {
-            const val = parseInt(star.getAttribute("data-value"));
-            if (ratingInput) ratingInput.value = val;
-            
-            stars.forEach(s => {
-                const sVal = parseInt(s.getAttribute("data-value"));
-                if (sVal <= val) {
-                    s.classList.add("active");
-                } else {
-                    s.classList.remove("active");
-                }
-            });
-        });
-    });
+// =============================================
+// UTILITY: HTML ESCAPER
+// =============================================
+function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
-// Submit review to Supabase
-async function handleFeedbackSubmit(event) {
-    event.preventDefault();
-    const name = document.getElementById("fbName").value.trim();
-    const service = document.getElementById("fbService").value;
-    const rating = parseInt(document.getElementById("fbRating").value || 5);
-    const comment = document.getElementById("fbComment").value.trim();
-
-    if (!name || !service || !comment) return;
-
-    const newFeedback = {
-        name,
-        service,
-        rating,
-        comment
-    };
-
-    try {
-        const result = await submitFeedback(newFeedback);
-        feedbacksCache.unshift(result);
-        renderTestimonials();
-        
-        triggerToast("Review Submitted", `Thank you, ${name}! Your rating has been successfully saved.`, "success");
-        
-        // Reset Form
-        document.getElementById("feedbackForm").reset();
-        document.querySelectorAll(".star-input").forEach(s => s.classList.add("active"));
-        document.getElementById("fbRating").value = 5;
-    } catch (e) {
-        triggerToast("Submission Error", "Failed to submit review. Please check connection.", "error");
-    }
-}
-
-// Load public gallery from Supabase and render
-async function loadGalleryFeed() {
-    try {
-        galleryCache = await fetchGallery();
-        renderGallery(currentGalleryFilter);
-    } catch (e) {
-        console.error("Failed to load gallery:", e);
-    }
-}
-
-function setupGalleryFilters() {
-    const allBtn = document.getElementById("galleryFilterAll");
-    const photoBtn = document.getElementById("galleryFilterPhoto");
-    const videoBtn = document.getElementById("galleryFilterVideo");
-
-    if (allBtn) {
-        allBtn.addEventListener("click", () => {
-            setActiveFilterBtn(allBtn);
-            renderGallery('all');
-        });
-    }
-    if (photoBtn) {
-        photoBtn.addEventListener("click", () => {
-            setActiveFilterBtn(photoBtn);
-            renderGallery('photo');
-        });
-    }
-    if (videoBtn) {
-        videoBtn.addEventListener("click", () => {
-            setActiveFilterBtn(videoBtn);
-            renderGallery('video');
-        });
-    }
-}
-
-function setActiveFilterBtn(activeBtn) {
-    document.querySelectorAll(".gallery-filter-btn").forEach(btn => btn.classList.remove("active"));
-    activeBtn.classList.add("active");
-}
-
-function renderGallery(filter) {
-    currentGalleryFilter = filter;
-    const grid = document.getElementById("galleryFeedGrid");
-    const emptyState = document.getElementById("galleryEmptyState");
-    if (!grid) return;
-
-    let posts = galleryCache;
-    if (currentGalleryFilter !== 'all') {
-        posts = galleryCache.filter(p => p.type === currentGalleryFilter);
-    }
-
-    grid.innerHTML = "";
-    if (posts.length === 0) {
-        if (emptyState) emptyState.style.display = "block";
-        return;
-    }
-    if (emptyState) emptyState.style.display = "none";
-
-    posts.forEach(post => {
-        const card = document.createElement("div");
-        card.className = "gallery-post-card";
-        card.setAttribute("data-type", post.type);
-
-        const mediaHtml = post.type === "video"
-            ? `<div class="gallery-post-media">
-                  <video src="${post.media_url}" preload="metadata" loop muted playsinline
-                         onmouseenter="this.play()" onmouseleave="this.pause()"></video>
-                  <div class="video-play-overlay"><span>&#9654;</span></div>
-               </div>`
-            : `<div class="gallery-post-media">
-                  <img src="${post.media_url}" alt="${escapeHtml(post.caption)}" loading="lazy">
-               </div>`;
-
-        const friendlyDate = new Date(post.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-
-        card.innerHTML = `
-            ${mediaHtml}
-            <div class="gallery-post-info">
-                <div class="gallery-tag-badge">${escapeHtml(post.tag)}</div>
-                <p class="gallery-post-caption">${escapeHtml(post.caption)}</p>
-                <div class="gallery-post-meta">
-                    <span class="gallery-artist">&#128247; ${escapeHtml(post.posted_by)}</span>
-                    <span class="gallery-date">${friendlyDate}</span>
-                </div>
-            </div>
-        `;
-        grid.appendChild(card);
-    });
-}
-
-// In-app Toast Messages UI
+// In-app toast notification
 function triggerToast(title, message, type = "success") {
     const container = document.getElementById("toastContainer");
     if (!container) return;
-
     const toast = document.createElement("div");
     toast.className = `custom-toast toast-${type}`;
     toast.innerHTML = `
@@ -378,22 +497,10 @@ function triggerToast(title, message, type = "success") {
         </div>
         <button class="toast-close" onclick="this.parentElement.remove()">×</button>
     `;
-
     container.appendChild(toast);
-
     setTimeout(() => {
         toast.style.opacity = '0';
         toast.style.transform = 'translateX(100px)';
         setTimeout(() => toast.remove(), 400);
     }, 6000);
-}
-
-// HTML Escaper for Security
-function escapeHtml(str) {
-    if (!str) return '';
-    return str.replace(/&/g, "&amp;")
-              .replace(/</g, "&lt;")
-              .replace(/>/g, "&gt;")
-              .replace(/"/g, "&quot;")
-              .replace(/'/g, "&#039;");
 }

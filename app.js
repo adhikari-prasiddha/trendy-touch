@@ -56,30 +56,43 @@ const DEFAULT_BOOKINGS = [
 ];
 
 const DEFAULT_STUDENTS = [
-    {
-        name: "Barsha Raut",
-        phone: "9812903827",
-        email: "barsha.makeup@gmail.com",
-        courseName: "Professional Bridal Makeup Course",
-        startDate: "2026-06-01",
-        note: "Interested in bridal draping styling especially.",
-        createdDate: "2026-05-18",
-        studentId: "barsha123",
-        password: "pass123",
-        status: "Confirmed"
+    {+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    name: "Barsha Raut",
+    phone: "9812903827",
+    email: "barsha.makeup@gmail.com",
+    courseName: "Professional Bridal Makeup Course",
+    startDate: "2026-06-01",
+    note: "Interested in bridal draping styling especially.",
+    createdDate: "2026-05-18",
+    studentId: "barsha123",
+    password: "pass123",
+    status: "Confirmed"
     },
-    {
-        name: "Sneha Pandey",
+{
+    name: "Sneha Pandey",
         phone: "9808772836",
-        email: "sneha.pandey@gmail.com",
-        courseName: "Self-Makeup Mastery Course",
-        startDate: "2026-05-26",
-        note: "Wants to learn everyday work looks.",
-        createdDate: "2026-05-19",
-        studentId: "sneha123",
-        password: "pass123",
-        status: "Confirmed"
-    }
+            email: "sneha.pandey@gmail.com",
+                courseName: "Self-Makeup Mastery Course",
+                    startDate: "2026-05-26",
+                        note: "Wants to learn everyday work looks.",
+                            createdDate: "2026-05-19",
+                                studentId: "sneha123",
+                                    password: "pass123",
+                                        status: "Confirmed"
+}
 ];
 
 const DEFAULT_FEEDBACKS = [
@@ -190,7 +203,7 @@ let loggedInStudentId = null;  // tracks the unique studentId if logged in as a 
 // ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
     initializeMockDatabase();
-    
+
     // Header scroll background modification
     window.addEventListener("scroll", () => {
         const header = document.querySelector(".header");
@@ -336,7 +349,7 @@ function setupStarRating() {
         star.addEventListener("click", () => {
             const val = parseInt(star.getAttribute("data-value"));
             ratingInput.value = val;
-            
+
             stars.forEach(s => {
                 const sVal = parseInt(s.getAttribute("data-value"));
                 if (sVal <= val) {
@@ -373,10 +386,10 @@ function submitFeedback(event) {
 
     // Refresh reviews UI
     renderTestimonialsSlider();
-    
+
     // In-app Alert
     triggerNotification("Feedback Received", `Thank you, ${name}! Your rating has been shared.`, "success");
-    
+
     // Reset Form
     document.getElementById("feedbackForm").reset();
     document.querySelectorAll(".star-input").forEach(s => s.classList.add("active")); // reset to 5 stars visually
@@ -399,7 +412,7 @@ let wizVenueSelection = "Studio";
 function openBookingWizard(defaultVenue = "studio") {
     wizCurrentStep = 1;
     wizVenueSelection = defaultVenue.toLowerCase() === "home" ? "Home" : "Studio";
-    
+
     // Select the radio option in step 1 UI
     const venueRadios = document.getElementsByName("bookingVenue");
     venueRadios.forEach(radio => {
@@ -411,7 +424,7 @@ function openBookingWizard(defaultVenue = "studio") {
 
     // Show initial package list in Step 2
     loadCategoryPackages(document.getElementById("wizCategory").value);
-    
+
     // Reset inputs
     document.getElementById("wizName").value = "";
     document.getElementById("wizPhone").value = "";
@@ -486,7 +499,7 @@ function selectPackageFromList(category, name, price) {
     openBookingWizard();
     document.getElementById("wizCategory").value = category;
     loadCategoryPackages(category);
-    
+
     // Choose specific radio item
     setTimeout(() => {
         const radios = document.getElementsByName("wizPackageRadio");
@@ -506,7 +519,7 @@ function selectPackageFromList(category, name, price) {
 function updateSummaryPrice() {
     let base = wizSelectedPackage.price;
     let travel = wizVenueSelection === "Home" ? 2000 : 0;
-    
+
     let addonsTotal = 0;
     const addons = document.querySelectorAll("input[name='wizAddons']:checked");
     addons.forEach(ch => {
@@ -519,7 +532,7 @@ function updateSummaryPrice() {
     const sumBase = document.getElementById("sumBasePrice");
     const sumTravel = document.getElementById("sumTravelFee");
     const sumTotal = document.getElementById("sumTotalPrice");
-    
+
     if (sumBase) sumBase.textContent = `Rs. ${base.toLocaleString()}`;
     if (sumTravel) sumTravel.textContent = `Rs. ${travel.toLocaleString()}`;
     if (sumTotal) sumTotal.textContent = `Rs. ${grandTotal.toLocaleString()}`;
@@ -530,7 +543,7 @@ function updateWizardUI() {
     document.querySelectorAll(".wizard-step-panel").forEach(panel => {
         panel.classList.remove("active");
     });
-    
+
     const activePanel = document.querySelector(`.wizard-step-panel[data-step="${wizCurrentStep}"]`);
     if (activePanel) activePanel.classList.add("active");
 
@@ -600,7 +613,7 @@ function populateSummaryDetails() {
     const phone = document.getElementById("wizPhone").value;
     const date = document.getElementById("wizDate").value;
     const time = document.getElementById("wizTime").value;
-    
+
     // Addons names list
     let selectedAddonsList = [];
     document.querySelectorAll("input[name='wizAddons']:checked").forEach(ch => {
@@ -639,7 +652,7 @@ function confirmPreBooking() {
     let travel = wizVenueSelection === "Home" ? 2000 : 0;
     let addonsList = [];
     let addonsTotal = 0;
-    
+
     document.querySelectorAll("input[name='wizAddons']:checked").forEach(ch => {
         addonsList.push(ch.value);
         addonsTotal += parseInt(ch.getAttribute("data-price"));
@@ -674,7 +687,7 @@ function confirmPreBooking() {
     // Show Success Panel
     document.querySelector(".wizard-body").style.display = "none";
     document.querySelector(".wizard-header").style.display = "none";
-    
+
     const successPanel = document.getElementById("wizardSuccessPanel");
     successPanel.style.display = "block";
 
@@ -963,7 +976,7 @@ function openDashboard(role = 'staff') {
     const portal = document.getElementById("dashboardPortal");
     portal.classList.add("open");
     document.body.style.overflow = "hidden"; // lock page scrolling under dashboard
-    
+
     // Check permission state for notification toggle
     const btn = document.getElementById("btnRequestNotification");
     if (btn && "Notification" in window) {
@@ -992,17 +1005,17 @@ function applyRoleBasedDashboard(role) {
     }
 
     // Show / hide restricted tab buttons
-    const tabBookings  = document.getElementById("tabBtnBookings");
+    const tabBookings = document.getElementById("tabBtnBookings");
     const tabFeedbacks = document.getElementById("tabBtnFeedbacks");
-    const tabGallery   = document.getElementById("tabBtnGallery");
-    if (tabBookings)  tabBookings.style.display  = isStaff ? "" : "none";
+    const tabGallery = document.getElementById("tabBtnGallery");
+    if (tabBookings) tabBookings.style.display = isStaff ? "" : "none";
     if (tabFeedbacks) tabFeedbacks.style.display = isStaff ? "" : "none";
-    if (tabGallery)   tabGallery.style.display   = isStaff ? "" : "none";
+    if (tabGallery) tabGallery.style.display = isStaff ? "" : "none";
 
     // Show / hide booking and rating metric cards
-    const metricBookings  = document.getElementById("metricCardBookings");
+    const metricBookings = document.getElementById("metricCardBookings");
     const metricFeedbacks = document.getElementById("metricCardFeedbacks");
-    if (metricBookings)  metricBookings.style.display  = isStaff ? "" : "none";
+    if (metricBookings) metricBookings.style.display = isStaff ? "" : "none";
     if (metricFeedbacks) metricFeedbacks.style.display = isStaff ? "" : "none";
 
     // Show Academy Learning Center only for students
@@ -1027,7 +1040,7 @@ function loadDashboardData() {
     // 1. Calculate Scorecards
     const totalB = bookings.length;
     const totalS = students.length;
-    
+
     let avgF = 5.0;
     if (feedbacks.length > 0) {
         const sum = feedbacks.reduce((acc, fb) => acc + fb.rating, 0);
@@ -1103,11 +1116,11 @@ function renderStudentsTable(list) {
         // Students can see their own row, but other students' private data is masked
         const isSelf = currentUserRole === 'student' && st.studentId === loggedInStudentId;
         const maskPrivate = currentUserRole === 'student' && !isSelf;
-        
+
         const displayPhone = maskPrivate ? "●●●●●●●●●●" : st.phone;
         const displayEmail = maskPrivate ? "Protected" : st.email;
-        const displayNote  = maskPrivate ? "—" : (escapeHtml(st.note) || "—");
-        const displayId    = maskPrivate ? "Protected" : st.studentId;
+        const displayNote = maskPrivate ? "—" : (escapeHtml(st.note) || "—");
+        const displayId = maskPrivate ? "Protected" : st.studentId;
 
         let statusHtml = "";
         if (st.status === "Confirmed") {
@@ -1158,15 +1171,15 @@ function verifyStudentPortal(studentId) {
 function renderStudentAcademyCenter(studentsList) {
     const academyCenter = document.getElementById("studentAcademyCenter");
     if (!academyCenter) return;
-    
+
     // Check if the role is student
     if (currentUserRole !== 'student') {
         academyCenter.style.display = "none";
         return;
     }
-    
+
     academyCenter.style.display = "block";
-    
+
     // Get the active student (matching logged-in student ID)
     const activeStudent = (studentsList && studentsList.length > 0)
         ? (studentsList.find(st => st.studentId === loggedInStudentId) || studentsList[0])
@@ -1175,9 +1188,9 @@ function renderStudentAcademyCenter(studentsList) {
             courseName: "Professional Bridal Makeup Course",
             startDate: new Date().toISOString().split('T')[0]
         };
-    
+
     const courseName = activeStudent.courseName || "Professional Bridal Makeup Course";
-    
+
     // Define course details database
     const courseDetails = {
         "Professional Bridal Makeup Course": {
@@ -1235,10 +1248,10 @@ function renderStudentAcademyCenter(studentsList) {
             ]
         }
     };
-    
+
     // Get info for current course, fallback if not found
     const details = courseDetails[courseName] || courseDetails["Professional Bridal Makeup Course"];
-    
+
     // Construct HTML content
     let html = `
         <div class="student-academy-header" style="margin-bottom: 24px;">
@@ -1359,7 +1372,7 @@ function renderStudentAcademyCenter(studentsList) {
             </div>
         </div>
     `;
-    
+
     academyCenter.innerHTML = html;
 }
 
@@ -1398,13 +1411,13 @@ function filterBookingsTable() {
     const bookings = getBookings();
 
     const filtered = bookings.filter(bk => {
-        const matchesSearch = bk.name.toLowerCase().includes(search) || 
-                              bk.phone.includes(search) || 
-                              bk.package.toLowerCase().includes(search) || 
-                              bk.id.toLowerCase().includes(search);
-        
+        const matchesSearch = bk.name.toLowerCase().includes(search) ||
+            bk.phone.includes(search) ||
+            bk.package.toLowerCase().includes(search) ||
+            bk.id.toLowerCase().includes(search);
+
         const matchesStatus = status === "All" || bk.status === status;
-        
+
         return matchesSearch && matchesStatus;
     });
 
@@ -1506,7 +1519,7 @@ function copyToClipboard(text, buttonElement) {
         buttonElement.textContent = "Copied!";
         buttonElement.style.backgroundColor = "var(--color-accent-gold)";
         buttonElement.style.borderColor = "var(--color-accent-gold)";
-        
+
         setTimeout(() => {
             buttonElement.textContent = originalText;
             buttonElement.style.backgroundColor = "";
@@ -1529,10 +1542,10 @@ function toggleWidgetOptions() {
 function escapeHtml(str) {
     if (!str) return '';
     return str.replace(/&/g, "&amp;")
-              .replace(/</g, "&lt;")
-              .replace(/>/g, "&gt;")
-              .replace(/"/g, "&quot;")
-              .replace(/'/g, "&#039;");
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
 // ==========================================================================
@@ -1734,7 +1747,7 @@ function submitGalleryPost(event) {
 function setupDragAndDrop() {
     const dropZone = document.getElementById("galleryFileDrop");
     const fileInput = document.getElementById("galleryFile");
-    
+
     if (!dropZone || !fileInput) return;
 
     // Prevent default behaviors for drag events

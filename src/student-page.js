@@ -1,5 +1,5 @@
-import { loginStudent, logoutUser, getCurrentUser } from './auth.js';
-import { fetchStudentByStudentId, fetchGallery, submitFeedback } from './api.js';
+import { loginStudent, logoutUser, getSessionUser, getLoggedStudentProfile } from './auth.js';
+import { fetchGallery, submitFeedback } from './api.js';
 
 let currentStudent = null;
 
@@ -39,12 +39,11 @@ async function handleStudentLogin(event) {
     submitBtn.textContent = "Logging in...";
 
     try {
-        // Build fake email from student_id pattern used during enrollment
-        const fakeEmail = `${studentIdInput}@trendytouch.academy`;
-        await loginStudent(fakeEmail, password);
+        // Authenticate student by their username (which resolved to their email inside loginStudent)
+        const user = await loginStudent(studentIdInput, password);
 
-        // Fetch student record from DB
-        const student = await fetchStudentByStudentId(studentIdInput);
+        // Fetch student record from DB using the authenticated user's email
+        const student = await getLoggedStudentProfile(user.email);
 
         if (!student) {
             throw new Error("Student record not found. Please contact the studio.");

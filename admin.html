@@ -8,7 +8,9 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
     <!-- Supabase CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <!-- CSS Stylesheet -->
@@ -28,17 +30,22 @@
                 <form id="adminLoginForm">
                     <div class="form-group mb-3">
                         <label for="adminEmail">Staff Email</label>
-                        <input type="email" id="adminEmail" class="form-control text-center" placeholder="staff@trendytouch.com" required>
+                        <input type="email" id="adminEmail" class="form-control text-center"
+                            placeholder="staff@trendytouch.com" required>
                     </div>
                     <div class="form-group mb-4">
                         <label for="adminPassword">Password</label>
-                        <input type="password" id="adminPassword" class="form-control text-center" placeholder="••••••••" required>
+                        <input type="password" id="adminPassword" class="form-control text-center"
+                            placeholder="••••••••" required>
                     </div>
-                    <span id="loginError" class="text-danger mt-2 mb-3 d-block text-center" style="display:none;"></span>
+                    <span id="loginError" class="text-danger mt-2 mb-3 d-block text-center"
+                        style="display:none;"></span>
                     <button type="submit" class="btn btn-primary w-100" id="btnLoginSubmit">Access Dashboard</button>
                 </form>
                 <div class="text-center mt-3">
-                    <a href="/" style="font-size: 0.85rem; color: var(--color-accent-rose-dark); text-decoration: none;">← Back to Main Site</a>
+                    <a href="/"
+                        style="font-size: 0.85rem; color: var(--color-accent-rose-dark); text-decoration: none;">← Back
+                        to Main Site</a>
                 </div>
             </div>
         </div>
@@ -105,7 +112,8 @@
             <!-- Bookings List Panel -->
             <div id="dash-bookings" class="dashboard-tab-panel active">
                 <div class="table-controls mb-3">
-                    <input type="text" id="bookingSearch" class="form-control search-input" placeholder="Search by name, phone or service...">
+                    <input type="text" id="bookingSearch" class="form-control search-input"
+                        placeholder="Search by name, phone or service...">
                     <select id="bookingFilterStatus" class="form-control status-select">
                         <option value="All">All Statuses</option>
                         <option value="Pending">Pending</option>
@@ -130,7 +138,9 @@
                         </thead>
                         <tbody id="bookingsTableBody">
                             <!-- Dynamic bookings logs row -->
-                            <tr><td colspan="8" class="text-center text-muted">Loading bookings...</td></tr>
+                            <tr>
+                                <td colspan="8" class="text-center text-muted">Loading bookings...</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -155,7 +165,9 @@
                         </thead>
                         <tbody id="studentsTableBody">
                             <!-- Dynamic student logs row -->
-                            <tr><td colspan="9" class="text-center text-muted">Loading students...</td></tr>
+                            <tr>
+                                <td colspan="9" class="text-center text-muted">Loading students...</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -176,7 +188,9 @@
                         </thead>
                         <tbody id="feedbacksTableBody">
                             <!-- Dynamic feedbacks logs row -->
-                            <tr><td colspan="5" class="text-center text-muted">Loading feedbacks...</td></tr>
+                            <tr>
+                                <td colspan="5" class="text-center text-muted">Loading feedbacks...</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -191,7 +205,8 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="galleryPostedBy">Artist / Staff Name</label>
-                                <input type="text" id="galleryPostedBy" class="form-control" placeholder="e.g. Babita Poudel" required>
+                                <input type="text" id="galleryPostedBy" class="form-control"
+                                    placeholder="e.g. Babita Poudel" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="galleryTag">Service Tag</label>
@@ -207,7 +222,8 @@
                         </div>
                         <div class="form-group">
                             <label for="galleryCaption">Caption</label>
-                            <input type="text" id="galleryCaption" class="form-control" placeholder="e.g. Stunning airbrush bridal look for Asmita's big day! ✨" required>
+                            <input type="text" id="galleryCaption" class="form-control"
+                                placeholder="e.g. Stunning airbrush bridal look for Asmita's big day! ✨" required>
                         </div>
                         <div class="form-group">
                             <label>Select Photo or Video</label>
@@ -215,15 +231,18 @@
                                 <div class="file-drop-inner" id="fileDropInner">
                                     <span class="file-drop-icon">📎</span>
                                     <p>Click to select or drag & drop here</p>
-                                    <p class="file-hint">Photos: JPG, PNG, WEBP &nbsp;|&nbsp; Videos: MP4, MOV, WEBM (max 50MB)</p>
+                                    <p class="file-hint">Photos: JPG, PNG, WEBP &nbsp;|&nbsp; Videos: MP4, MOV, WEBM
+                                        (max 50MB)</p>
                                 </div>
-                                <input type="file" id="galleryFile" accept="image/*,video/*" style="display:none" required>
+                                <input type="file" id="galleryFile" accept="image/*,video/*" style="display:none"
+                                    required>
                             </div>
                             <div id="galleryFilePreview" class="gallery-file-preview" style="display:none"></div>
                         </div>
                         <div class="d-flex" style="justify-content: flex-end; gap: 12px; margin-top: 15px;">
                             <button type="button" class="btn btn-outline" id="btnGalleryClear">Clear</button>
-                            <button type="submit" class="btn btn-primary" id="btnPublishPost">Publish to Client Feed</button>
+                            <button type="submit" class="btn btn-primary" id="btnPublishPost">Publish to Client
+                                Feed</button>
                         </div>
                     </form>
                 </div>
@@ -239,7 +258,8 @@
     </div>
 
     <!-- Audio Element for Mock Notification sound -->
-    <audio id="notificationSound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-84.wav" preload="auto"></audio>
+    <audio id="notificationSound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-84.wav"
+        preload="auto"></audio>
 
     <!-- In-App Custom Toast Notification Stack -->
     <div class="toast-container" id="toastContainer"></div>

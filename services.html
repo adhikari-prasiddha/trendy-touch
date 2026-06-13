@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Trendy Touch Makeup Studio</title>
+    <!-- Meta Descriptions for SEO -->
+    <meta name="description"
+        content="Explore our luxury beauty services. Choose between a relaxing studio session in Pokhara or premium home styling services across the Pokhara Valley by Babita Poudel.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="page-services">
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo-link">
+                <img src="/logo.png" alt="Trendy Touch Makeup Studio" class="logo-img">
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link active">Services</a>
+                <a href="packages.html" class="nav-link">Packages</a>
+                <a href="academy.html" class="nav-link">Academy</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="reviews.html" class="nav-link">Reviews</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <a href="booking.html" class="btn btn-primary">Book Now</a>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close Navigation">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link">Home</a>
+            <a href="services.html" class="mobile-nav-link active">Services</a>
+            <a href="packages.html" class="mobile-nav-link">Packages</a>
+            <a href="academy.html" class="mobile-nav-link">Academy</a>
+            <a href="products.html" class="mobile-nav-link">Products</a>
+            <a href="reviews.html" class="mobile-nav-link">Reviews</a>
+            <a href="gallery.html" class="mobile-nav-link">Gallery</a>
+            <a href="contact.html" class="mobile-nav-link">Contact</a>
+            <hr class="mobile-nav-divider">
+            <a href="booking.html" class="btn btn-primary w-100">Book Now</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main style="padding-top: 120px; padding-bottom: 80px;">
+        <section id="services" class="services-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">What We Offer</span>
+                    <h2 class="section-title">Exclusive Studio & Home Services</h2>
+                    <div class="accent-line"></div>
+                    <p class="section-description">We bring luxury pampering directly to you. Select between an indulgent
+                        session in our state-of-the-art studio or the extreme comfort of our home service setup.</p>
+                </div>
+
+                <div class="services-toggle-container">
+                    <div class="service-option-card">
+                        <div class="option-header">
+                            <div class="option-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                            </div>
+                            <h3>Studio Service</h3>
+                        </div>
+                        <p>Visit our elegant space, designed to put you at ease with relaxing lighting, complimentary
+                            drinks, and professional-grade makeup chairs.</p>
+                        <ul class="option-benefits">
+                            <li>Access to our full physical product cabinet</li>
+                            <li>Optimal ring-light & natural light calibration</li>
+                            <li>Perfect environment for outfit and jewelry draping</li>
+                            <li>One-on-one consultation with Babita Poudel</li>
+                            <li>Complimentary pre-service skin analysis</li>
+                        </ul>
+                        <a href="booking.html?venue=studio" class="btn btn-outline w-100">Book Studio Session</a>
+                    </div>
+
+                    <div class="service-option-card luxury-highlight">
+                        <div class="premium-ribbon">Highly Requested</div>
+                        <div class="option-header">
+                            <div class="option-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                            </div>
+                            <h3>Luxury Home Service</h3>
+                        </div>
+                        <p>Forget traffic stress. Babita and her elite team bring professional lighted mirrors, sterilized
+                            kits, and luxury cosmetics straight to your home or wedding venue.</p>
+                        <ul class="option-benefits">
+                            <li>Absolute convenience and privacy</li>
+                            <li>Personalized time schedule adjusted for photography</li>
+                            <li>Available across Pokhara Valley</li>
+                            <li>Ideal for bridal groups and bridesmaid parties</li>
+                            <li>Includes touch-up kits for the event duration</li>
+                        </ul>
+                        <a href="booking.html?venue=home" class="btn btn-primary w-100">Request Home Service</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="contact" class="footer-section">
+        <div class="container footer-container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <a href="index.html" class="logo-link mb-3 d-inline-block">
+                        <img src="/logo.png" alt="Trendy Touch Logo" class="logo-img footer-logo">
+                    </a>
+                    <p class="mb-4">Luxury makeup styling & certified cosmetics academy by Babita Poudel. Creating
+                        beautiful moments and professional careers since 2018.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="YouTube">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                                </path>
+                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Contact Information</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                            <div>
+                                <span class="d-block text-muted">Phone Number</span>
+                                <a href="tel:+9779801234567" class="contact-link">+977-9801234567</a>
+                                <button class="btn-copy" id="btnCopyPhone">Copy</button>
+                            </div>
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <div>
+                                <span class="d-block text-muted">Email Address</span>
+                                <a href="mailto:info@trendytouchmakeup.com"
+                                    class="contact-link">info@trendytouchmakeup.com</a>
+                                <button class="btn-copy" id="btnCopyEmail">Copy</button>
+                            </div>
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <div>
+                                <span class="d-block text-muted">Studio Location</span>
+                                <span class="contact-text">Siddhartha chowk, Pokhara, Nepal</span>
+                                <button class="btn-copy" id="btnCopyAddress">Copy</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-map">
+                    <h3>Find Us On Maps</h3>
+                    <div class="map-shortcut-card">
+                        <div class="map-icon-circle">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon>
+                                <line x1="9" y1="3" x2="9" y2="18"></line>
+                                <line x1="15" y1="6" x2="15" y2="21"></line>
+                            </svg>
+                        </div>
+                        <p class="mb-3 text-center">Open direction routes instantly in Google Maps to Siddhartha Chowk Studio.</p>
+                        <a href="https://maps.app.goo.gl/CWcjntTRvLyaaES86" target="_blank" class="btn btn-outline w-100 btn-sm text-center">Get Directions</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Trendy Touch Makeup Studio & Academy. All Rights Reserved. Designed for elegance.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- In-App Custom Toast Notification Stack -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- JavaScript Application Logic -->
+    <script type="module">
+        document.addEventListener("DOMContentLoaded", () => {
+            // Header scroll
+            window.addEventListener("scroll", () => {
+                const header = document.querySelector(".header");
+                if (header) header.classList.toggle("scrolled", window.scrollY > 50);
+            }, { passive: true });
+
+            // Mobile nav toggle
+            const menuToggle = document.getElementById("menuToggle");
+            const mobileNav = document.getElementById("mobileNav");
+            const mobileNavClose = document.getElementById("mobileNavClose");
+
+            if (menuToggle && mobileNav) {
+                menuToggle.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    mobileNav.classList.add("open");
+                });
+            }
+            if (mobileNavClose && mobileNav) {
+                mobileNavClose.addEventListener("click", () => mobileNav.classList.remove("open"));
+            }
+            document.addEventListener("click", (e) => {
+                if (mobileNav && mobileNav.classList.contains("open")) {
+                    if (!mobileNav.contains(e.target) && menuToggle && !menuToggle.contains(e.target)) {
+                        mobileNav.classList.remove("open");
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
