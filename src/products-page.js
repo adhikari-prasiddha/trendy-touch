@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p class="product-desc">${p.desc}</p>
                     <div class="product-footer">
                         <span class="product-price">${p.price}</span>
-                        <a href="contact.html?inquiry=${encodeURIComponent(p.name)}" class="btn btn-sm btn-primary">Inquire</a>
+                        <a href="contact?inquiry=${encodeURIComponent(p.name)}" class="btn btn-sm btn-primary">Inquire</a>
                     </div>
                 </div>
             `;

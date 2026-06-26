@@ -233,8 +233,8 @@ function showEnrollmentSuccess(name, studentId, visitDate) {
                 </p>
             </div>
 
-            <a href="/" class="btn btn-primary" style="margin-right: 10px;">Back to Home</a>
-            <a href="student.html" class="btn btn-outline">Try Student Portal Login</a>
+            <a href="./" class="btn btn-primary" style="margin-right: 10px;">Back to Home</a>
+            <a href="student" class="btn btn-outline">Try Student Portal Login</a>
         </div>
     `;
 }

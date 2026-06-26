@@ -129,13 +129,27 @@ function handleScrollEffects() {
 // =============================================
 function highlightPageNavigation() {
     const path = window.location.pathname;
-    const page = path.split("/").pop() || "index.html";
+    let page = path.split("/").pop();
+    if (page && page.endsWith(".html")) {
+        page = page.substring(0, page.length - 5);
+    }
+    if (!page || page === "index") {
+        page = "";
+    }
     document.querySelectorAll(".nav-link, .mobile-nav-link").forEach(link => {
-        const href = link.getAttribute("href");
-        const isActive = href === page
-            || (page === "index.html" && (href === "/" || href === ""))
-            || (page === "" && (href === "/" || href === "index.html"));
-        link.classList.toggle("active", isActive);
+        let href = link.getAttribute("href");
+        if (href) {
+            // Strip leading slash if present, and remove .html or query parameters
+            let urlPart = href.split("?")[0].split("#")[0];
+            if (urlPart.endsWith(".html")) {
+                urlPart = urlPart.substring(0, urlPart.length - 5);
+            }
+            if (urlPart === "/" || urlPart === "./" || urlPart === "index") {
+                urlPart = "";
+            }
+            const isActive = urlPart === page;
+            link.classList.toggle("active", isActive);
+        }
     });
 }
 
