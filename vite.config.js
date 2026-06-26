@@ -1,22 +1,29 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 
+// Plugin: Rewrites clean URLs (e.g. /services) to their .html counterpart internally
+// so the Vite dev server can serve them without a 404.
+const cleanUrlsPlugin = {
+  name: 'clean-urls',
+  configureServer(server) {
+    server.middlewares.use((req, res, next) => {
+      const parts = req.url.split('?');
+      const pathname = parts[0];
+      const search = parts[1] ? '?' + parts[1] : '';
+
+      // Only rewrite paths with no file extension and not root /
+      if (pathname !== '/' && !pathname.includes('.') && !pathname.endsWith('/')) {
+        req.url = pathname + '.html' + search;
+      }
+      next();
+    });
+  }
+};
+
 export default defineConfig({
+  plugins: [cleanUrlsPlugin],
   server: {
     port: 5173,
-    configureServer(server) {
-      server.middlewares.use((req, res, next) => {
-        const parts = req.url.split('?');
-        const pathname = parts[0];
-        const search = parts[1] ? '?' + parts[1] : '';
-        
-        // Rewrite to .html internally if it is a clean URL path (no extension, not ending in slash)
-        if (pathname !== '/' && !pathname.includes('.') && !pathname.endsWith('/')) {
-          req.url = pathname + '.html' + search;
-        }
-        next();
-      });
-    }
   },
   build: {
     rollupOptions: {
@@ -36,3 +43,4 @@ export default defineConfig({
     },
   },
 });
+
